@@ -6,4 +6,19 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Middleware\" />
+    <Folder Include="Utility\Pagination\" />
+    <Folder Include="ViewModels\AutoMapperProfile\" />
+    <Folder Include="ViewModels\Product\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PreorderPlatform.Entity\PreorderPlatform.Entity.csproj" />
+  </ItemGroup>
+
 </Project>
