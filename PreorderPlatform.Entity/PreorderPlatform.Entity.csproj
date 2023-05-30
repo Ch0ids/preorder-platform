@@ -7,14 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Migrations\" />
     <Folder Include="Repositories\CategoryRepository\" />
     <Folder Include="Repositories\CampaignRepository\" />
     <Folder Include="Repositories\RoleRepository\" />
     <Folder Include="Repositories\PaymentRepository\" />
     <Folder Include="Repositories\OrderRepository\" />
     <Folder Include="Repositories\ProductRepository\" />
-    <Folder Include="Repositories\UserRepository\" />
   </ItemGroup>
 
   <ItemGroup>
