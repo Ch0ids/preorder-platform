@@ -13,7 +13,7 @@ using PreorderPlatform.Service.Services.OrderServices;
 using PreorderPlatform.Service.Services.PaymentServices;
 using PreorderPlatform.Service.Services.ProductServices;
 using PreorderPlatform.Service.Services.RoleServices;
-using PreorderPlatform.Service.Services.UserServices;
+using PreorderPlatform.Services.Services.UserServices;
 
 namespace PreorderPlatform.Service
 {

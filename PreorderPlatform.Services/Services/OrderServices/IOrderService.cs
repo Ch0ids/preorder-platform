@@ -10,7 +10,6 @@ namespace PreorderPlatform.Service.Services.OrderServices
 {
     public interface IOrderService
     {
-        public Task<List<UserViewModel>> GetUsersAsync();
 
     }
 }

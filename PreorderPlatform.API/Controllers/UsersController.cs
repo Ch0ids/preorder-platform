@@ -12,6 +12,7 @@ using PreorderPlatform.Services.ViewModels.ApiResponse;
 using PreorderPlatform.Services.ViewModels.User;
 using PreorderPlatform.Services.Services.Exceptions;
 using PreorderPlatform.Services.Exceptions;
+using PreorderPlatform.Service.ViewModels.User;
 
 namespace PreorderPlatform.API.Controllers
 {

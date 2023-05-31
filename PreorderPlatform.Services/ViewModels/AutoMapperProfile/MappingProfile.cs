@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using PreorderPlatform.Service.ViewModels.User;
 using PreorderPlatform.Services.ViewModels.User;
 using System;
 using System.Collections.Generic;

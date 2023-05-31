@@ -12,7 +12,7 @@ using PreorderPlatform.Entity.Repositories.OrderRepositories;
 using PreorderPlatform.Entity.Repositories.PaymentRepositories;
 using PreorderPlatform.Entity.Repositories.ProductRepositories;
 using PreorderPlatform.Entity.Repositories.RoleRepositories;
-using PreorderPlatform.Entity.Repositories.UserRepositories;
+using PreorderPlatform.Entity.Repositories.UserRepository;
 
 namespace PreorderPlatform.Entity
 {
@@ -37,7 +37,7 @@ namespace PreorderPlatform.Entity
             services.AddScoped<IPaymentRepository, PaymentRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IRoleRepository, RoleRepository>();
-            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<UserRepository>();
         }
     }
 }

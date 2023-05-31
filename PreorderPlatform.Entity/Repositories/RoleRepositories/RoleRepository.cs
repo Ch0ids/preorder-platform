@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PreorderPlatform.Entity.Repositories.RoleRepositories
 {
-    public class RoleRepository : IRoleRepository
+    internal class RoleRepository : IRoleRepository
     {
     }
 }
