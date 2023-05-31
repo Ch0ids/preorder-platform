@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PreorderPlatform.Services.ViewModels.AutoMapperProfile
+namespace PreorderPlatform.Service.ViewModels.AutoMapperProfile
 {
     internal class BusinessMapper
     {

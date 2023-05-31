@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PreorderPlatform.Services.Utility.Pagination
+namespace PreorderPlatform.Service.Utility.Pagination
 {
     internal class Class1
     {
