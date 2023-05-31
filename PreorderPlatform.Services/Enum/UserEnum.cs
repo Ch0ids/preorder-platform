@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PreorderPlatform.Services.Enum
+namespace PreorderPlatform.Service.Enum
 {
     public enum UserEnum
     {

@@ -5,7 +5,7 @@ VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinorTest", "MinorTest\MinorTest.csproj", "{F345D166-69B0-4DD8-905D-7E16BC98E87D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PreorderPlatform.Services", "PreorderPlatform.Services\PreorderPlatform.Services.csproj", "{8B05B63A-B1E8-4FB5-920B-EE35AD3F4A15}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PreorderPlatform.Service", "PreorderPlatform.Services\PreorderPlatform.Service.csproj", "{8B05B63A-B1E8-4FB5-920B-EE35AD3F4A15}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PreorderPlatform.Entity", "PreorderPlatform.Entity\PreorderPlatform.Entity.csproj", "{9FD49CD8-8CD5-43CC-8D49-F968C7B14CB0}"
 EndProject

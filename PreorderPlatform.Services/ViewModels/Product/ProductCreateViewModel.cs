@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PreorderPlatform.Services.ViewModels.Product
+namespace PreorderPlatform.Service.ViewModels.Product
 {
     internal class ProductCreateViewModel
     {

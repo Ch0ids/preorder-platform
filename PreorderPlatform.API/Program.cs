@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 using Microsoft.EntityFrameworkCore;
 using PreorderPlatform.Entity.Entities;
 using AutoMapper;
@@ -9,6 +10,12 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using PreorderPlatform.Services.Services.AuthService;
+=======
+using PreorderPlatform.Service;
+using PreorderPlatform.Entity.Entities;
+using PreorderPlatform.Entity;
+using Microsoft.EntityFrameworkCore;
+>>>>>>> 24cded826e037883fb1bcc0c6819e3e8d14e838d
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +26,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+<<<<<<< HEAD
 builder.Services.AddDbContext<PreOrderSystemContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("PreOrderSystem")));
 
@@ -58,20 +66,27 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 
 
 var app = builder.Build();
+=======
+// Register Dependency Injection
+builder.Services.RegisterBusiness(builder.Configuration);
+//builder.Services.AddDbContext<PreOrderSystemContext>(options
+//    => options.UseSqlServer(builder.Configuration.GetConnectionString("DBContext")));
+>>>>>>> 24cded826e037883fb1bcc0c6819e3e8d14e838d
 
+var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
 app.UseHttpsRedirection();
+<<<<<<< HEAD
 
 app.UseAuthentication(); // Add this line
 
+=======
+>>>>>>> 24cded826e037883fb1bcc0c6819e3e8d14e838d
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();

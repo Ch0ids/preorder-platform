@@ -28,6 +28,7 @@ namespace PreorderPlatform.Entity.Entities
         public virtual DbSet<Role> Roles { get; set; } = null!;
         public virtual DbSet<User> Users { get; set; } = null!;
 
+<<<<<<< HEAD
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             /*
@@ -38,6 +39,16 @@ namespace PreorderPlatform.Entity.Entities
             }
             */
         }
+=======
+//        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+//        {
+//            if (!optionsBuilder.IsConfigured)
+//            {
+//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+//                optionsBuilder.UseSqlServer("Server=CHOIDS;Database=PreOrderSystem;Trusted_Connection=True;");
+//            }
+//        }
+>>>>>>> 24cded826e037883fb1bcc0c6819e3e8d14e838d
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

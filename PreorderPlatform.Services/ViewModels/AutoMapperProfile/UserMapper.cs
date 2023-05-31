@@ -7,7 +7,7 @@ using AutoMapper;
 using PreorderPlatform.Entity.Entities;
 using PreorderPlatform.Services.ViewModels.User;
 
-namespace PreorderPlatform.Services.ViewModels.AutoMapperProfile
+namespace PreorderPlatform.Service.ViewModels.AutoMapperProfile
 {
     public class UserMapper : Profile
     {

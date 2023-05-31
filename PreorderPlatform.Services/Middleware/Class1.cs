@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PreorderPlatform.Services.Middleware
+namespace PreorderPlatform.Service.Middleware
 {
     internal class Class1
     {
