@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PreorderPlatform.Services.Services.ProductServices
 {
-    internal interface IProductServices
+    internal interface IProductService
     {
     }
 }

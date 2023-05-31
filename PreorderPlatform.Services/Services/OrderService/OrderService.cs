@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PreorderPlatform.Services.ViewModels.AutoMapperProfile
+namespace PreorderPlatform.Services.Services.OrderServices
 {
-    internal class Class1
+    internal class OrderService
     {
     }
 }

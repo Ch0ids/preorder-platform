@@ -7,12 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Repositories\CategoryRepository\" />
-    <Folder Include="Repositories\CampaignRepository\" />
-    <Folder Include="Repositories\RoleRepository\" />
-    <Folder Include="Repositories\PaymentRepository\" />
-    <Folder Include="Repositories\OrderRepository\" />
-    <Folder Include="Repositories\ProductRepository\" />
+    <Folder Include="Entities\" />
   </ItemGroup>
 
   <ItemGroup>

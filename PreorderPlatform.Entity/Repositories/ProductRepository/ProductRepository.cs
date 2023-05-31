@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PreorderPlatform.Services.ViewModels.User
+namespace PreorderPlatform.Entity.Repositories.ProductRepository
 {
-    internal class CreateUserViewModel
+    internal class ProductRepository
     {
     }
 }

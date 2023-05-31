@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PreorderPlatform.Services.ViewModels.Product
+namespace PreorderPlatform.Services.Services.CampaignServices
 {
-    internal class CreateProductViewModel
+    internal class CampaignService
     {
     }
 }
