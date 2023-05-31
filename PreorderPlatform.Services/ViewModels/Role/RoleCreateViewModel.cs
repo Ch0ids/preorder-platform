@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace PreorderPlatform.Service.ViewModels.Role
 {
-    public class RoleDetailViewModel
+    public class RoleCreateViewModel
     {
-        public int Id { get; set; }
-        public string? Name { get; set; }
+        public string Name { get; set; }
     }
 }

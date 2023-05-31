@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using PreorderPlatform.Entity.Entities;
+using PreorderPlatform.Entity.Repositories.UserRepositories;
 using PreorderPlatform.Entity.Repositories.UserRepository;
 using PreorderPlatform.Service.ViewModels.User;
 using PreorderPlatform.Services.Exceptions;
@@ -12,12 +13,12 @@ using System.Threading.Tasks;
 
 namespace PreorderPlatform.Services.Services.UserServices
 {
-    public class UserService : IUserService
+    internal class UserService : IUserService
     {
-        private readonly UserRepository _userRepository;
+        private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
 
-        public UserService(UserRepository userRepository, IMapper mapper)
+        public UserService(IUserRepository userRepository, IMapper mapper)
         {
             _userRepository = userRepository;
             _mapper = mapper;
@@ -60,12 +61,13 @@ namespace PreorderPlatform.Services.Services.UserServices
             }
         }
 
-        public async Task CreateUserAsync(UserCreateViewModel model)
+        public async Task<UserViewModel> CreateUserAsync(UserCreateViewModel model)
         {
             try
             {
                 var user = _mapper.Map<User>(model);
                 await _userRepository.CreateAsync(user);
+                return _mapper.Map<UserViewModel>(user);
             }
             catch (Exception ex)
             {

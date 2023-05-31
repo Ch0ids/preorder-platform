@@ -12,6 +12,7 @@ using PreorderPlatform.Entity.Repositories.OrderRepositories;
 using PreorderPlatform.Entity.Repositories.PaymentRepositories;
 using PreorderPlatform.Entity.Repositories.ProductRepositories;
 using PreorderPlatform.Entity.Repositories.RoleRepositories;
+using PreorderPlatform.Entity.Repositories.UserRepositories;
 using PreorderPlatform.Entity.Repositories.UserRepository;
 
 namespace PreorderPlatform.Entity
@@ -20,7 +21,7 @@ namespace PreorderPlatform.Entity
     {
         public static void RegisterData(this IServiceCollection services, IConfiguration configuration)
         {
-            string connectionString = configuration.GetConnectionString("DBContext");
+            string connectionString = configuration.GetConnectionString("PreOrderSystem");
             services.AddDbContext<PreOrderSystemContext>(options
     => options.UseSqlServer(connectionString));
         }
@@ -37,7 +38,7 @@ namespace PreorderPlatform.Entity
             services.AddScoped<IPaymentRepository, PaymentRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IRoleRepository, RoleRepository>();
-            services.AddScoped<UserRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
         }
     }
 }

@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using PreorderPlatform.Entity;
 using PreorderPlatform.Entity.Repositories;
 using PreorderPlatform.Service.Services;
+using PreorderPlatform.Service.Services.AuthService;
 using PreorderPlatform.Service.Services.BusinessPaymentCredentialServices;
 using PreorderPlatform.Service.Services.BusinessServices;
 using PreorderPlatform.Service.Services.CampaignDetailServices;
@@ -13,6 +14,8 @@ using PreorderPlatform.Service.Services.OrderServices;
 using PreorderPlatform.Service.Services.PaymentServices;
 using PreorderPlatform.Service.Services.ProductServices;
 using PreorderPlatform.Service.Services.RoleServices;
+using PreorderPlatform.Services.Services.AuthService;
+using PreorderPlatform.Services.Services.RoleServices;
 using PreorderPlatform.Services.Services.UserServices;
 
 namespace PreorderPlatform.Service
@@ -39,6 +42,9 @@ namespace PreorderPlatform.Service
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IRoleService, RoleService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<IJwtService, JwtService>();
+
         }
     }
 }

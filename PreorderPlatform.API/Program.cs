@@ -10,6 +10,9 @@ using System.Text;
 using PreorderPlatform.Services.Services.AuthService;
 using PreorderPlatform.Service.ViewModels.AutoMapperProfile;
 using PreorderPlatform.Services.Services.UserServices;
+using PreorderPlatform.Entity.Repositories.UserRepositories;
+using PreorderPlatform.Entity;
+using PreorderPlatform.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,15 +23,23 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<PreOrderSystemContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("PreOrderSystem")));
+//builder.Services.AddDbContext<PreOrderSystemContext>(options =>
+//    options.UseSqlServer(builder.Configuration.GetConnectionString("PreOrderSystem")));
+
+builder.Services.AddAutoMapper(typeof(ApplicationAutoMapperProfile));
+
+// Add the following lines within the ConfigureServices method
+builder.Services.RegisterData(builder.Configuration);
+builder.Services.RegisterRepository();
+
+builder.Services.RegisterBusiness(builder.Configuration);
+
+//builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 
-builder.Services.AddAutoMapper(typeof(UserMapper).Assembly);
-builder.Services.AddScoped<UserRepository>();
-builder.Services.AddScoped<UserService>();
-builder.Services.AddScoped<AuthService>();
-builder.Services.AddScoped<JwtService>();
+    //builder.Services.AddScoped<UserService>();
+    //builder.Services.AddScoped<AuthService>();
+    //builder.Services.AddScoped<JwtService>();
 
 
 var jwtSettings = builder.Configuration.GetSection("Jwt");

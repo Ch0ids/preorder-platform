@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using PreorderPlatform.Entity.Entities;
 
 namespace PreorderPlatform.Entity.Repositories.BusinessPaymentCredentialRepositories
 {
-    public class BusinessPaymentCredentialRepository : IBusinessPaymentCredentialRepository
+    public class BusinessPaymentCredentialRepository : RepositoryBase<BusinessPaymentCredential>, IBusinessPaymentCredentialRepository
     {
+        public BusinessPaymentCredentialRepository(PreOrderSystemContext context) : base(context)
+        {
+
+        }
+
+        // Add any additional methods specific to BusinessPaymentCredentialRepository here...
     }
 }

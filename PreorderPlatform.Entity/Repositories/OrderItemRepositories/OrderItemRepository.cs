@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using PreorderPlatform.Entity.Entities;
 
 namespace PreorderPlatform.Entity.Repositories.OrderItemRepositories
 {
-    public class OrderItemRepository : IOrderItemRepository
+    public class OrderItemRepository : RepositoryBase<OrderItem>, IOrderItemRepository
     {
+        public OrderItemRepository(PreOrderSystemContext context) : base(context)
+        {
+
+        }
+
+        // Add any additional methods specific to OrderItemRepository here...
     }
 }

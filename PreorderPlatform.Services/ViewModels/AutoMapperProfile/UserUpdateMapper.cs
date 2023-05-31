@@ -11,8 +11,8 @@ namespace PreorderPlatform.Services.ViewModels.AutoMapperProfile
     {
         public UserUpdateMapper()
         {
-            CreateMap<PreorderPlatform.Entity.Entities.User, UserCreateMapper>();
-            CreateMap<UserCreateMapper, PreorderPlatform.Entity.Entities.User>();
+            //CreateMap<PreorderPlatform.Entity.Entities.User, UserCreateMapper>();
+            //CreateMap<UserCreateMapper, PreorderPlatform.Entity.Entities.User>();
         }
     }
 }

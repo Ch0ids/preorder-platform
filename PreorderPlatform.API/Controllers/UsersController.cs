@@ -20,10 +20,10 @@ namespace PreorderPlatform.API.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly UserService _userService;
+        private readonly IUserService _userService;
         private readonly IMapper _mapper;
 
-        public UsersController(UserService userService, IMapper mapper)
+        public UsersController(IUserService userService, IMapper mapper)
         {
             _userService = userService;
             _mapper = mapper;
@@ -68,8 +68,10 @@ namespace PreorderPlatform.API.Controllers
         {
             try
             {
-                await _userService.CreateUserAsync(model);
-                return CreatedAtAction(nameof(GetUserById), new { id = model.Id }, model);
+                var user = await _userService.CreateUserAsync(model);
+                return CreatedAtAction(nameof(GetUserById),
+                                       new { id = user.Id },
+                                       new ApiResponse<UserViewModel>(user, "User created successfully.", true, null));
             }
             catch (Exception ex)
             {

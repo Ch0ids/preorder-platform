@@ -1,7 +1,9 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using PreorderPlatform.Entity.Entities;
+using PreorderPlatform.Entity.Repositories.UserRepositories;
 using PreorderPlatform.Entity.Repositories.UserRepository;
+using PreorderPlatform.Service.Services.AuthService;
 using PreorderPlatform.Services.ViewModels.User;
 using System;
 using System.Collections.Generic;
@@ -13,13 +15,13 @@ using System.Threading.Tasks;
 
 namespace PreorderPlatform.Services.Services.AuthService
 {
-    public class AuthService
+    internal class AuthService : IAuthService
     {
         private readonly string _jwtSecret;
         // Thêm DataContext nếu bạn sử dụng Entity Framework Core
-        private readonly UserRepository _userRepository;
+        private readonly IUserRepository _userRepository;
 
-        public AuthService(IConfiguration configuration, UserRepository userRepository)
+        public AuthService(IConfiguration configuration, IUserRepository userRepository)
         {
             _jwtSecret = configuration.GetSection("Jwt:Secret").Value;
             _userRepository = userRepository;

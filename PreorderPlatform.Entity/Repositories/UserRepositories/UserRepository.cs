@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PreorderPlatform.Entity.Entities;
+using PreorderPlatform.Entity.Repositories.UserRepositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PreorderPlatform.Entity.Repositories.UserRepository
 {
-    public class UserRepository : RepositoryBase<User>
+    public class UserRepository : RepositoryBase<User>, IUserRepository
     {
         private readonly PreOrderSystemContext _context;
 

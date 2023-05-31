@@ -13,8 +13,8 @@ namespace PreorderPlatform.Service.ViewModels.AutoMapperProfile
     {
         public UserMapper()
         {
-            CreateMap<PreorderPlatform.Entity.Entities.User, UserViewModel>();
-            CreateMap<UserViewModel, PreorderPlatform.Entity.Entities.User>();
+            //CreateMap<PreorderPlatform.Entity.Entities.User, UserViewModel>();
+            //CreateMap<UserViewModel, PreorderPlatform.Entity.Entities.User>();
         }
     }
 }

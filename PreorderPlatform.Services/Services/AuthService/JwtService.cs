@@ -3,6 +3,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using PreorderPlatform.Entity.Entities;
 using PreorderPlatform.Entity.Repositories.UserRepository;
+using PreorderPlatform.Service.Services.AuthService;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -13,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace PreorderPlatform.Services.Services.AuthService
 {
-    public class JwtService
+    public class JwtService : IJwtService
     {
         private readonly string _jwtSecret;
         private readonly double _expirationInHours;

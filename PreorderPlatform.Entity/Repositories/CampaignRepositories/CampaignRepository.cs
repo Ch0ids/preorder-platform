@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using PreorderPlatform.Entity.Entities;
 
 namespace PreorderPlatform.Entity.Repositories.CampaignRepositories
 {
-    public class CampaignRepository : ICampaignRepository
+    public class CampaignRepository : RepositoryBase<Campaign>, ICampaignRepository
     {
+        public CampaignRepository(PreOrderSystemContext context) : base(context)
+        {
+
+        }
+
+        // Add any additional methods specific to CampaignRepository here...
     }
 }

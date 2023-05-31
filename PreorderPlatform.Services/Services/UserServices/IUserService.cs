@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace PreorderPlatform.Services.Services.UserServices
 {
-    internal interface IUserService
+    public interface IUserService
     {
-        Task CreateUserAsync(UserCreateViewModel model);
+        Task<UserViewModel> CreateUserAsync(UserCreateViewModel model);
         Task DeleteUserAsync(int id);
         Task<UserViewModel> GetUserByIdAsync(int id);
         Task<List<UserViewModel>> GetUsersAsync();

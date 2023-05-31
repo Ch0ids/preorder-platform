@@ -10,6 +10,7 @@ using PreorderPlatform.Services.ViewModels.ApiResponse;
 using Microsoft.AspNetCore.Authorization;
 using System.Data;
 using PreorderPlatform.Services.Utility.CustomAuthorizeAttribute;
+using PreorderPlatform.Service.Services.AuthService;
 
 namespace PreorderPlatform.API.Controllers
 {
@@ -19,12 +20,12 @@ namespace PreorderPlatform.API.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        private readonly UserService _userService;
-        private readonly AuthService _authService;
-        private readonly JwtService _jwtService;
+        private readonly IUserService _userService;
+        private readonly IAuthService _authService;
+        private readonly IJwtService _jwtService;
 
 
-        public AuthController(UserService userService, AuthService authService, JwtService jwtService)
+        public AuthController(IUserService userService, IAuthService authService, IJwtService jwtService)
         {
             _userService = userService;
             _authService = authService;

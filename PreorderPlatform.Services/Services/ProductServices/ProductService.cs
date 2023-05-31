@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PreorderPlatform.Service.Services.ProductServices
 {
-    public class ProductService : IProductService
+    internal class ProductService : IProductService
     {
     }
 }
