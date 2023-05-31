@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PreorderPlatform.Services.ViewModels.User
 {
-    public class UserCreateViewModel
+    public class UserUpdateViewModel
     {
         public int Id { get; set; }
         public string? FirstName { get; set; }

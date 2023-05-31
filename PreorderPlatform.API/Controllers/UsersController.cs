@@ -2,10 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using PreorderPlatform.Entity.Entities;
+using PreorderPlatform.Services.Services.AuthService;
+using PreorderPlatform.Services.Services.UserServices;
+using PreorderPlatform.Services.ViewModels.ApiResponse;
+using PreorderPlatform.Services.ViewModels.User;
+using PreorderPlatform.Services.Services.Exceptions;
+using PreorderPlatform.Services.Exceptions;
 
 namespace PreorderPlatform.API.Controllers
 {
@@ -13,111 +19,100 @@ namespace PreorderPlatform.API.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly PreOrderSystemContext _context;
+        private readonly UserService _userService;
+        private readonly IMapper _mapper;
 
-        public UsersController(PreOrderSystemContext context)
+        public UsersController(UserService userService, IMapper mapper)
         {
-            _context = context;
+            _userService = userService;
+            _mapper = mapper;
         }
 
-        // GET: api/Users
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
+        public async Task<IActionResult> GetAllUsers()
         {
-          if (_context.Users == null)
-          {
-              return NotFound();
-          }
-            return await _context.Users.ToListAsync();
-        }
-
-        // GET: api/Users/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetUser(int id)
-        {
-          if (_context.Users == null)
-          {
-              return NotFound();
-          }
-            var user = await _context.Users.FindAsync(id);
-
-            if (user == null)
-            {
-                return NotFound();
-            }
-
-            return user;
-        }
-
-        // PUT: api/Users/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutUser(int id, User user)
-        {
-            if (id != user.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(user).State = EntityState.Modified;
-
             try
             {
-                await _context.SaveChangesAsync();
+                var users = await _userService.GetUsersAsync();
+                return Ok(new ApiResponse<List<UserViewModel>>(users, "Users fetched successfully.", true, null));
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception ex)
             {
-                if (!UserExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    new ApiResponse<object>(null, $"Error fetching users: {ex.Message}", false, null));
             }
-
-            return NoContent();
         }
 
-        // POST: api/Users
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<User>> PostUser(User user)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetUserById(int id)
         {
-          if (_context.Users == null)
-          {
-              return Problem("Entity set 'PreOrderSystemContext.Users'  is null.");
-          }
-            _context.Users.Add(user);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetUser", new { id = user.Id }, user);
+            try
+            {
+                var user = await _userService.GetUserByIdAsync(id);
+                return Ok(new ApiResponse<UserViewModel>(user, "User fetched successfully.", true, null));
+            }
+            catch (NotFoundException ex)
+            {
+                return NotFound(new ApiResponse<string>(null, ex.Message, false, null));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    new ApiResponse<object>(null, $"Error fetching user: {ex.Message}", false, null));
+            }
         }
 
-        // DELETE: api/Users/5
+        [HttpPost]
+        public async Task<IActionResult> CreateUser(UserCreateViewModel model)
+        {
+            try
+            {
+                await _userService.CreateUserAsync(model);
+                return CreatedAtAction(nameof(GetUserById), new { id = model.Id }, model);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    new ApiResponse<object>(null, $"Error creating user: {ex.Message}", false, null));
+            }
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdateUser(UserUpdateViewModel model)
+        {
+            try
+            {
+                await _userService.UpdateUserAsync(model);
+                return Ok(new ApiResponse<object>(null, "User updated successfully.", true, null));
+            }
+            catch (NotFoundException ex)
+            {
+                return NotFound(new ApiResponse<object>(null, ex.Message, false, null));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    new ApiResponse<object>(null, $"Error updating user: {ex.Message}", false, null));
+            }
+        }
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(int id)
         {
-            if (_context.Users == null)
+            try
             {
-                return NotFound();
+                await _userService.DeleteUserAsync(id);
+                return Ok(new ApiResponse<object>(null, "User deleted successfully.", true, null));
             }
-            var user = await _context.Users.FindAsync(id);
-            if (user == null)
+            catch (NotFoundException ex)
             {
-                return NotFound();
+                return NotFound(new ApiResponse<string>(null, ex.Message, false, null));
             }
-
-            _context.Users.Remove(user);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-        private bool UserExists(int id)
-        {
-            return (_context.Users?.Any(e => e.Id == id)).GetValueOrDefault();
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    new ApiResponse<object>(null, $"Error deleting user: {ex.Message}", false, null));
+            }
         }
     }
 }
