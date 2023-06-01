@@ -10,7 +10,6 @@ using PreorderPlatform.Service.ViewModels.ApiResponse;
 using Microsoft.AspNetCore.Authorization;
 using System.Data;
 using PreorderPlatform.Service.Utility.CustomAuthorizeAttribute;
-using PreorderPlatform.Service.Services.AuthService;
 
 namespace PreorderPlatform.API.Controllers
 {
@@ -70,10 +69,24 @@ namespace PreorderPlatform.API.Controllers
 
             if (user != null)
             {
-                string token = _jwtService.GenerateToken(user.Id.ToString(), user.Email, user.Role.Name);
-                JwtTokenViewModel jwtTokenViewModel = new JwtTokenViewModel(token);
+                if (user?.Role == null)
+                {
+                    return BadRequest(new ApiResponse<object>(null, "User don't have any role!", false, null));
+                } else
+                {
+                    try
+                    {
+                        string token = _jwtService.GenerateToken(user.Id.ToString(), user.Email, user.Role.Name);
+                        JwtTokenViewModel jwtTokenViewModel = new JwtTokenViewModel(token);
+                        return Ok(new ApiResponse<JwtTokenViewModel>(jwtTokenViewModel, "Login successful", true, null));
 
-                return Ok(new ApiResponse<JwtTokenViewModel>(jwtTokenViewModel, "Login successful", true, null));
+                    }
+                    catch (Exception ex)
+                    {
+                        return BadRequest(new ApiResponse<object>(null, "Some error occur!", false, null));
+
+                    }
+                }
             } else {
                 return BadRequest(new ApiResponse<object>(null, "Invalid username or password", false, null));
             }

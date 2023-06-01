@@ -13,6 +13,7 @@ using PreorderPlatform.Service.Services.UserServices;
 using PreorderPlatform.Entity.Repositories.UserRepositories;
 using PreorderPlatform.Entity;
 using PreorderPlatform.Service;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +23,36 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Pre Order System API", Version = "v1" });
+
+    // Add this line to customize the schemaId generation
+    c.CustomSchemaIds(type => type.FullName.Replace('.', '_'));
+
+    // Add this block for JWT authentication
+    c.AddSecurityDefinition("bearerAuth", new OpenApiSecurityScheme
+    {
+        Type = SecuritySchemeType.Http,
+        BearerFormat = "JWT",
+        Scheme = "bearer"
+    });
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement
+     {
+         {
+             new OpenApiSecurityScheme
+             {
+                 Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "bearerAuth" }
+             },
+             new string[] { }
+         }
+     });
+
+    // If you have XML comments enabled, include the path here
+    // var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    // var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    // c.IncludeXmlComments(xmlPath);
+});
 
 //builder.Services.AddDbContext<PreOrderSystemContext>(options =>
 //    options.UseSqlServer(builder.Configuration.GetConnectionString("PreOrderSystem")));
@@ -80,7 +111,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthentication(); // Add this line
-
 app.UseAuthorization();
+
 app.MapControllers();
 app.Run();

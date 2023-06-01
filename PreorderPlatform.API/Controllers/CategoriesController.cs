@@ -6,7 +6,6 @@ using PreorderPlatform.Service.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using PreorderPlatform.Service.Services.CategoryServices;
 using PreorderPlatform.Service.ViewModels.Category;
 
 namespace PreorderPlatform.API.Controllers

@@ -7,18 +7,18 @@ using System.Threading.Tasks;
 
 namespace PreorderPlatform.Service.Exceptions
 {
-    public class ServiceException : Exception
+    public class NotFoundException : Exception
     {
-        public ServiceException()
+        public NotFoundException()
         {
         }
 
-        public ServiceException(string message)
+        public NotFoundException(string message)
             : base(message)
         {
         }
 
-        public ServiceException(string message, Exception inner)
+        public NotFoundException(string message, Exception inner)
             : base(message, inner)
         {
         }

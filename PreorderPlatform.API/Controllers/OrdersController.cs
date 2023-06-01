@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using PreorderPlatform.Service.Services.OrderServices;
 using PreorderPlatform.Service.ViewModels.Order;
 using PreorderPlatform.Service.Exceptions;
-using PreorderPlatform.Service.Services.OrderServices;
 using PreorderPlatform.Service.ViewModels.ApiResponse;
 using System;
 using System.Collections.Generic;

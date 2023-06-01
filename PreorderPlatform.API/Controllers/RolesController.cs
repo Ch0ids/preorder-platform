@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 using PreorderPlatform.Service.Services.RoleServices;
 using PreorderPlatform.Service.ViewModels.ApiResponse;
 using PreorderPlatform.Service.Exceptions;
-using PreorderPlatform.Service.Services.RoleServices;
 using PreorderPlatform.Service.ViewModels.Role;
 
 namespace PreorderPlatform.API.Controllers

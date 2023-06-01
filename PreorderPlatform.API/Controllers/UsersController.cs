@@ -12,7 +12,6 @@ using PreorderPlatform.Service.ViewModels.ApiResponse;
 using PreorderPlatform.Service.ViewModels.User;
 using PreorderPlatform.Service.Services.Exceptions;
 using PreorderPlatform.Service.Exceptions;
-using PreorderPlatform.Service.ViewModels.User;
 using BCrypt;
 
 namespace PreorderPlatform.API.Controllers
