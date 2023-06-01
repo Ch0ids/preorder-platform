@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace PreorderPlatform.Services.Exceptions
+namespace PreorderPlatform.Service.Exceptions
 {
     public class NotFoundException : Exception
     {

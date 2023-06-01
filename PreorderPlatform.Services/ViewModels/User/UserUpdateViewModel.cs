@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PreorderPlatform.Services.ViewModels.User
+namespace PreorderPlatform.Service.ViewModels.User
 {
     public class UserUpdateViewModel
     {

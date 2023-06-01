@@ -15,15 +15,4 @@
     <ProjectReference Include="..\PreorderPlatform.Entity\PreorderPlatform.Entity.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="ViewModels\Business\" />
-    <Folder Include="ViewModels\BusinessPaymentCredential\" />
-    <Folder Include="ViewModels\Campaign\" />
-    <Folder Include="ViewModels\Category\" />
-    <Folder Include="ViewModels\CampaignDetail\" />
-    <Folder Include="ViewModels\Payment\" />
-    <Folder Include="ViewModels\OrderItem\" />
-    <Folder Include="ViewModels\Order\" />
-  </ItemGroup>
-
 </Project>

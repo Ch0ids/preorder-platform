@@ -1,5 +1,5 @@
 ﻿using PreorderPlatform.Entity.Entities;
-using PreorderPlatform.Services.ViewModels.User;
+using PreorderPlatform.Service.ViewModels.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -4,7 +4,7 @@ using PreorderPlatform.Entity.Entities;
 using PreorderPlatform.Entity.Repositories.UserRepositories;
 using PreorderPlatform.Entity.Repositories.UserRepository;
 using PreorderPlatform.Service.Services.AuthService;
-using PreorderPlatform.Services.ViewModels.User;
+using PreorderPlatform.Service.ViewModels.User;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -13,7 +13,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PreorderPlatform.Services.Services.AuthService
+namespace PreorderPlatform.Service.Services.AuthService
 {
     internal class AuthService : IAuthService
     {

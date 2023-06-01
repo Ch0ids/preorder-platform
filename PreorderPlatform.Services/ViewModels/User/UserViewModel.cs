@@ -1,10 +1,11 @@
-﻿using System;
+﻿using PreorderPlatform.Entity.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PreorderPlatform.Services.ViewModels.User
+namespace PreorderPlatform.Service.ViewModels.User
 {
     public class UserViewModel
     {
@@ -18,6 +19,11 @@ namespace PreorderPlatform.Services.ViewModels.User
         public string? Ward { get; set; }
         public string? District { get; set; }
         public string? Province { get; set; }
+
+        public string? RoleName { get; set; }
+
+        public string? Test { get; set; }
+
         public bool? Status { get; set; }
     }
 }

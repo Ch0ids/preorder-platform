@@ -1,13 +1,12 @@
 ﻿using PreorderPlatform.Entity.Entities;
 using PreorderPlatform.Service.ViewModels.User;
-using PreorderPlatform.Services.ViewModels.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PreorderPlatform.Services.Services.UserServices
+namespace PreorderPlatform.Service.Services.UserServices
 {
     public interface IUserService
     {

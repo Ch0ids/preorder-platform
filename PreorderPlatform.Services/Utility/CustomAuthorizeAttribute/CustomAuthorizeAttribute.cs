@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.Mvc.Filters;
-using PreorderPlatform.Services.ViewModels.ApiResponse;
+using PreorderPlatform.Service.ViewModels.ApiResponse;
 using System;
 using System.Linq;
 using System.Security.Claims;
 
-namespace PreorderPlatform.Services.Utility.CustomAuthorizeAttribute
+namespace PreorderPlatform.Service.Utility.CustomAuthorizeAttribute
 {
     public class CustomAuthorizeAttribute : Attribute, IAuthorizationFilter
     {

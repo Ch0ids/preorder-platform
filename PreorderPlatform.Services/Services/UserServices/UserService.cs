@@ -3,15 +3,15 @@ using PreorderPlatform.Entity.Entities;
 using PreorderPlatform.Entity.Repositories.UserRepositories;
 using PreorderPlatform.Entity.Repositories.UserRepository;
 using PreorderPlatform.Service.ViewModels.User;
-using PreorderPlatform.Services.Exceptions;
-using PreorderPlatform.Services.ViewModels.User;
+using PreorderPlatform.Service.Exceptions;
+using PreorderPlatform.Service.ViewModels.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PreorderPlatform.Services.Services.UserServices
+namespace PreorderPlatform.Service.Services.UserServices
 {
     internal class UserService : IUserService
     {

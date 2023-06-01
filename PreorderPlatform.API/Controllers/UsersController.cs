@@ -6,13 +6,14 @@ using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PreorderPlatform.Entity.Entities;
-using PreorderPlatform.Services.Services.AuthService;
-using PreorderPlatform.Services.Services.UserServices;
-using PreorderPlatform.Services.ViewModels.ApiResponse;
-using PreorderPlatform.Services.ViewModels.User;
-using PreorderPlatform.Services.Services.Exceptions;
-using PreorderPlatform.Services.Exceptions;
+using PreorderPlatform.Service.Services.AuthService;
+using PreorderPlatform.Service.Services.UserServices;
+using PreorderPlatform.Service.ViewModels.ApiResponse;
 using PreorderPlatform.Service.ViewModels.User;
+using PreorderPlatform.Service.Services.Exceptions;
+using PreorderPlatform.Service.Exceptions;
+using PreorderPlatform.Service.ViewModels.User;
+using BCrypt;
 
 namespace PreorderPlatform.API.Controllers
 {
@@ -68,7 +69,10 @@ namespace PreorderPlatform.API.Controllers
         {
             try
             {
+                model.Password = BCrypt.Net.BCrypt.HashPassword(model.Password);
+                
                 var user = await _userService.CreateUserAsync(model);
+                
                 return CreatedAtAction(nameof(GetUserById),
                                        new { id = user.Id },
                                        new ApiResponse<UserViewModel>(user, "User created successfully.", true, null));

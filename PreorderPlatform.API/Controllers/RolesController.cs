@@ -4,9 +4,9 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using PreorderPlatform.Services.Services.RoleServices;
-using PreorderPlatform.Services.ViewModels.ApiResponse;
-using PreorderPlatform.Services.Exceptions;
+using PreorderPlatform.Service.Services.RoleServices;
+using PreorderPlatform.Service.ViewModels.ApiResponse;
+using PreorderPlatform.Service.Exceptions;
 using PreorderPlatform.Service.Services.RoleServices;
 using PreorderPlatform.Service.ViewModels.Role;
 

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PreorderPlatform.Services.ViewModels.ApiResponse
+namespace PreorderPlatform.Service.ViewModels.ApiResponse
 {
     public class PaginationInfo
     {

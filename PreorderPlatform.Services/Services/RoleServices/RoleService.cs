@@ -3,13 +3,13 @@ using PreorderPlatform.Entity.Entities;
 using PreorderPlatform.Entity.Repositories.RoleRepositories;
 using PreorderPlatform.Service.Services.RoleServices;
 using PreorderPlatform.Service.ViewModels.Role;
-using PreorderPlatform.Services.Exceptions;
-using PreorderPlatform.Services.ViewModels.User;
+using PreorderPlatform.Service.Exceptions;
+using PreorderPlatform.Service.ViewModels.User;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace PreorderPlatform.Services.Services.RoleServices
+namespace PreorderPlatform.Service.Services.RoleServices
 {
     internal class RoleService : IRoleService
     {

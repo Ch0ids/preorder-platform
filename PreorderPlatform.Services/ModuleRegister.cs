@@ -14,9 +14,8 @@ using PreorderPlatform.Service.Services.OrderServices;
 using PreorderPlatform.Service.Services.PaymentServices;
 using PreorderPlatform.Service.Services.ProductServices;
 using PreorderPlatform.Service.Services.RoleServices;
-using PreorderPlatform.Services.Services.AuthService;
-using PreorderPlatform.Services.Services.RoleServices;
-using PreorderPlatform.Services.Services.UserServices;
+
+using PreorderPlatform.Service.Services.UserServices;
 
 namespace PreorderPlatform.Service
 {

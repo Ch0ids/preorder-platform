@@ -12,7 +12,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PreorderPlatform.Services.Services.AuthService
+namespace PreorderPlatform.Service.Services.AuthService
 {
     public class JwtService : IJwtService
     {

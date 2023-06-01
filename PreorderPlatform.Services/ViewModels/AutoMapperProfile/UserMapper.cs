@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using PreorderPlatform.Entity.Entities;
-using PreorderPlatform.Services.ViewModels.User;
+using PreorderPlatform.Service.ViewModels.User;
 
 namespace PreorderPlatform.Service.ViewModels.AutoMapperProfile
 {

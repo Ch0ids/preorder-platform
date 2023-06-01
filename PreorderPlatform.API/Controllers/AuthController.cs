@@ -2,14 +2,14 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PreorderPlatform.Entity.Entities;
-using PreorderPlatform.Services.Services.AuthService;
-using PreorderPlatform.Services.Services.UserServices;
+using PreorderPlatform.Service.Services.AuthService;
+using PreorderPlatform.Service.Services.UserServices;
 using System.Drawing.Text;
-using PreorderPlatform.Services.ViewModels.User;
-using PreorderPlatform.Services.ViewModels.ApiResponse;
+using PreorderPlatform.Service.ViewModels.User;
+using PreorderPlatform.Service.ViewModels.ApiResponse;
 using Microsoft.AspNetCore.Authorization;
 using System.Data;
-using PreorderPlatform.Services.Utility.CustomAuthorizeAttribute;
+using PreorderPlatform.Service.Utility.CustomAuthorizeAttribute;
 using PreorderPlatform.Service.Services.AuthService;
 
 namespace PreorderPlatform.API.Controllers

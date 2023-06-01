@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
 using PreorderPlatform.Service.ViewModels.User;
-using PreorderPlatform.Services.ViewModels.User;
+using PreorderPlatform.Service.ViewModels.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PreorderPlatform.Services.ViewModels.AutoMapperProfile
+namespace PreorderPlatform.Service.ViewModels.AutoMapperProfile
 {
     public class MappingProfile : Profile
     {
