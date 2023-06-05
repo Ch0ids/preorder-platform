@@ -14,6 +14,8 @@ using PreorderPlatform.Entity.Repositories.UserRepositories;
 using PreorderPlatform.Entity;
 using PreorderPlatform.Service;
 using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -65,12 +67,22 @@ builder.Services.RegisterRepository();
 
 builder.Services.RegisterBusiness(builder.Configuration);
 
+
+
+
+//Disable Automatic Validation
+//builder.Services.Configure<ApiBehaviorOptions>(options =>
+//{
+//    options.SuppressModelStateInvalidFilter = true;
+//});
+
+
 //builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 
-    //builder.Services.AddScoped<UserService>();
-    //builder.Services.AddScoped<AuthService>();
-    //builder.Services.AddScoped<JwtService>();
+//builder.Services.AddScoped<UserService>();
+//builder.Services.AddScoped<AuthService>();
+//builder.Services.AddScoped<JwtService>();
 
 
 var jwtSettings = builder.Configuration.GetSection("Jwt");
@@ -112,6 +124,24 @@ app.UseHttpsRedirection();
 
 app.UseAuthentication(); // Add this line
 app.UseAuthorization();
+
+// Configure the middleware pipeline
+//app.UseRouting();
+
+//app.UseEndpoints(endpoints =>
+//{
+//    endpoints.MapControllers();
+//    endpoints.MapGet("/test123", async context =>
+//    {
+//        await context.Response.WriteAsync("Hello, World!");
+//    });
+
+//    endpoints.MapGet("/api/greeting/{name}", async context =>
+//    {
+//        var name = context.Request.RouteValues["name"] as string;
+//        await context.Response.WriteAsync($"Hello, {name}!");
+//    });
+//});
 
 app.MapControllers();
 app.Run();

@@ -27,7 +27,7 @@ namespace PreorderPlatform.API.Controllers
         {
             try
             {
-                var products = await _productService.GetProductsAsync();
+                var products = await _productService.GetAllProductsWithCategoryAsync();
                 return Ok(new ApiResponse<List<ProductViewModel>>(products, "Products fetched successfully.", true, null));
             }
             catch (Exception ex)

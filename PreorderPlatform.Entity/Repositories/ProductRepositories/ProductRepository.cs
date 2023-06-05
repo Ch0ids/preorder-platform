@@ -15,5 +15,9 @@ namespace PreorderPlatform.Entity.Repositories.ProductRepositories
         }
 
         // Add any additional methods specific to ProductRepository here...
+        public async Task<IEnumerable<Product>> GetAllProductsWithCategoryAsync()
+        {
+            return await GetAllWithIncludeAsync(u => true, u => u.Category);
+        }
     }
 }

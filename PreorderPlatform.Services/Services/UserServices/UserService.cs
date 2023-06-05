@@ -37,6 +37,21 @@ namespace PreorderPlatform.Service.Services.UserServices
             }
         }
 
+        //GetAllUsersWithRoleAndBusinessAsync
+        public async Task<List<UserViewModel>> GetAllUsersWithRoleAndBusinessAsync()
+        {
+            try
+            {
+                var users = await _userRepository.GetAllUsersWithRoleAndBusinessAsync();
+                return _mapper.Map<List<UserViewModel>>(users);
+            }
+            catch (Exception ex)
+            {
+                throw new ServiceException("An error occurred while fetching users.", ex);
+            }
+        }
+
+
         public async Task<UserViewModel> GetUserByIdAsync(int id)
         {
             try
@@ -60,6 +75,31 @@ namespace PreorderPlatform.Service.Services.UserServices
                 throw new ServiceException($"An error occurred while fetching user with ID {id}.", ex);
             }
         }
+
+        public async Task<UserViewModel> GetUserWithRoleAndBusinessByIdAsync(int id)
+        {
+            try
+            {
+                var user = await _userRepository.GetUserWithRoleAndBusinessByIdAsync(id);
+
+                if (user == null)
+                {
+                    throw new NotFoundException($"User with ID {id} was not found.");
+                }
+
+                return _mapper.Map<UserViewModel>(user);
+            }
+            catch (NotFoundException)
+            {
+                // Rethrow NotFoundException to be handled by the caller
+                throw;
+            }
+            catch (Exception ex)
+            {
+                throw new ServiceException($"An error occurred while fetching user with ID {id}.", ex);
+            }
+        }
+
 
         public async Task<UserViewModel> CreateUserAsync(UserCreateViewModel model)
         {

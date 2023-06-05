@@ -9,10 +9,10 @@ namespace PreorderPlatform.Service.Services.CategoryServices
 {
     public interface ICategoryService
     {
-        Task<BusinessViewModel> CreateCategoryAsync(BusinessCreateViewModel model);
+        Task<CategoryViewModel> CreateCategoryAsync(CategoryCreateViewModel model);
         Task DeleteCategoryAsync(int id);
-        Task<List<BusinessViewModel>> GetCategoriesAsync();
-        Task<BusinessViewModel> GetCategoryByIdAsync(int id);
-        Task UpdateCategoryAsync(BusinessUpdateViewModel model);
+        Task<List<CategoryViewModel>> GetCategoriesAsync();
+        Task<CategoryViewModel> GetCategoryByIdAsync(int id);
+        Task UpdateCategoryAsync(CategoryUpdateViewModel model);
     }
 }

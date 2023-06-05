@@ -47,5 +47,16 @@ namespace PreorderPlatform.Entity.Repositories.UserRepository
             return BCrypt.Net.BCrypt.Verify(password, passwordHash);
         }
 
+
+        public async Task<User> GetUserWithRoleAndBusinessByIdAsync(int id)
+        {
+            return await GetWithIncludeAsync(u => u.Id == id, u => u.Role, u => u.Business);
+        }
+
+        public async Task<IEnumerable<User>> GetAllUsersWithRoleAndBusinessAsync()
+        {
+            return await GetAllWithIncludeAsync(u => true, u => u.Role, u => u.Business);
+        }
+
     }
 }

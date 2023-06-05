@@ -15,5 +15,6 @@ namespace PreorderPlatform.Service.ViewModels.Business
         public string? Email { get; set; }
         public int? OwnerId { get; set; }
         public bool? Status { get; set; }
+
     }
 }

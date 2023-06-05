@@ -29,7 +29,7 @@ namespace PreorderPlatform.API.Controllers
         {
             try
             {
-                var campaignDetailsList = await _campaignDetailService.GetCampaignDetailsAsync();
+                var campaignDetailsList = await _campaignDetailService.GetAllCampainDetailsWithProductAsync();
                 return Ok(new ApiResponse<List<CampaignDetailViewModel>>(campaignDetailsList, "Campaign details fetched successfully.", true, null));
             }
             catch (Exception ex)

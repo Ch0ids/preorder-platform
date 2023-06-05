@@ -12,8 +12,10 @@ namespace PreorderPlatform.Service.Services.UserServices
     {
         Task<UserViewModel> CreateUserAsync(UserCreateViewModel model);
         Task DeleteUserAsync(int id);
+        Task<List<UserViewModel>> GetAllUsersWithRoleAndBusinessAsync();
         Task<UserViewModel> GetUserByIdAsync(int id);
         Task<List<UserViewModel>> GetUsersAsync();
+        Task<UserViewModel> GetUserWithRoleAndBusinessByIdAsync(int id);
         Task UpdateUserAsync(UserUpdateViewModel model);
     }
 }

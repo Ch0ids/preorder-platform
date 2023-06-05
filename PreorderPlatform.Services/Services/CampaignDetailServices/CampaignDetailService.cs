@@ -35,6 +35,20 @@ namespace PreorderPlatform.Service.Services.CampaignDetailServices
             }
         }
 
+        //GetAllCampainDetailsWithProductAsync
+        public async Task<List<CampaignDetailViewModel>> GetAllCampainDetailsWithProductAsync()
+        {
+            try
+            {
+                var campaignDetails = await _campaignDetailRepository.GetAllCampainDetailsWithProductAsync();
+                return _mapper.Map<List<CampaignDetailViewModel>>(campaignDetails);
+            }
+            catch (Exception ex)
+            {
+                throw new ServiceException("An error occurred while fetching campaign details.", ex);
+            }
+        }
+
         public async Task<CampaignDetailViewModel> GetCampaignDetailByIdAsync(int id)
         {
             try

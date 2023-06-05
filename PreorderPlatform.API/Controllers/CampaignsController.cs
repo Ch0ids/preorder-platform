@@ -29,7 +29,8 @@ namespace PreorderPlatform.API.Controllers
         {
             try
             {
-                var campaigns = await _campaignService.GetCampaignsAsync();
+                var campaigns = await _campaignService.GetAllCampaignsWithOwnerAndBusinessAndCampaignDetailsAsync();
+            
                 return Ok(new ApiResponse<List<CampaignViewModel>>(campaigns, "Campaigns fetched successfully.", true, null));
             }
             catch (Exception ex)

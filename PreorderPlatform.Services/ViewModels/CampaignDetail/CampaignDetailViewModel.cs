@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PreorderPlatform.Service.ViewModels.Business;
+using PreorderPlatform.Service.ViewModels.Product;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,5 +16,7 @@ namespace PreorderPlatform.Service.ViewModels.CampaignDetail
         public int? MaxOrder { get; set; }
         public int? CampaignId { get; set; }
         public decimal? Price { get; set; }
+        public virtual ProductViewModel? Product { get; set; }
+
     }
 }

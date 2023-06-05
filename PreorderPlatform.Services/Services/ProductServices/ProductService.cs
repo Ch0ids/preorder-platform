@@ -35,6 +35,20 @@ namespace PreorderPlatform.Service.Services.ProductServices
             }
         }
 
+        //GetAllProductsWithCategoryAsync
+        public async Task<List<ProductViewModel>> GetAllProductsWithCategoryAsync()
+        {
+            try
+            {
+                var products = await _productRepository.GetAllProductsWithCategoryAsync();
+                return _mapper.Map<List<ProductViewModel>>(products);
+            }
+            catch (Exception ex)
+            {
+                throw new ServiceException("An error occurred while fetching products.", ex);
+            }
+        }
+
         public async Task<ProductViewModel> GetProductByIdAsync(int id)
         {
             try

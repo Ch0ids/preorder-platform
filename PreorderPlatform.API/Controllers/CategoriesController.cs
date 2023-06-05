@@ -27,7 +27,7 @@ namespace PreorderPlatform.API.Controllers
             try
             {
                 var categories = await _categoryService.GetCategoriesAsync();
-                return Ok(new ApiResponse<List<BusinessViewModel>>(categories, "Categories fetched successfully.", true, null));
+                return Ok(new ApiResponse<List<CategoryViewModel>>(categories, "Categories fetched successfully.", true, null));
             }
             catch (Exception ex)
             {
@@ -42,7 +42,7 @@ namespace PreorderPlatform.API.Controllers
             try
             {
                 var category = await _categoryService.GetCategoryByIdAsync(id);
-                return Ok(new ApiResponse<BusinessViewModel>(category, "Category fetched successfully.", true, null));
+                return Ok(new ApiResponse<CategoryViewModel>(category, "Category fetched successfully.", true, null));
             }
             catch (NotFoundException ex)
             {
@@ -56,14 +56,14 @@ namespace PreorderPlatform.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateCategory(BusinessCreateViewModel model)
+        public async Task<IActionResult> CreateCategory(CategoryCreateViewModel model)
         {
             try
             {
                 var category = await _categoryService.CreateCategoryAsync(model);
                 return CreatedAtAction(nameof(GetCategoryById),
                                        new { id = category.Id },
-                                       new ApiResponse<BusinessViewModel>(category, "Category created successfully.", true, null));
+                                       new ApiResponse<CategoryViewModel>(category, "Category created successfully.", true, null));
             }
             catch (Exception ex)
             {
@@ -73,7 +73,7 @@ namespace PreorderPlatform.API.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateCategory(BusinessUpdateViewModel model)
+        public async Task<IActionResult> UpdateCategory(CategoryUpdateViewModel model)
         {
             try
             {

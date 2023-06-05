@@ -10,5 +10,9 @@ namespace PreorderPlatform.Entity.Repositories.CampaignDetailRepositories
         }
 
         // Add any additional methods specific to CampaignDetailRepository here...
+        public async Task<IEnumerable<CampaignDetail>> GetAllCampainDetailsWithProductAsync()
+        {
+            return await GetAllWithIncludeAsync(u => true, u => u.Product);
+        }
     }
 }

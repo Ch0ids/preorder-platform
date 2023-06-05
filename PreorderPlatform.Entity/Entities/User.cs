@@ -26,7 +26,6 @@ namespace PreorderPlatform.Entity.Entities
         public bool? Status { get; set; }
         public int? RoleId { get; set; }
         public int? BusinessId { get; set; }
-
         public virtual Business? Business { get; set; }
         public virtual Role? Role { get; set; }
         public virtual ICollection<Business> Businesses { get; set; }

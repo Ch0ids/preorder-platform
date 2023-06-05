@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PreorderPlatform.Service.ViewModels.Category
 {
-    public class BusinessUpdateViewModel
+    public class CategoryUpdateViewModel
     {
         public int Id { get; set; }
         public string? Name { get; set; }

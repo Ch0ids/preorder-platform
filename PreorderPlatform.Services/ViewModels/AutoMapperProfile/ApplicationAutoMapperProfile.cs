@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using PreorderPlatform.Service.ViewModels.Business;
 using PreorderPlatform.Service.ViewModels.BusinessPaymentCredential;
 using PreorderPlatform.Service.ViewModels.Campaign;
 using PreorderPlatform.Service.ViewModels.CampaignDetail;
@@ -25,6 +26,8 @@ namespace PreorderPlatform.Service.ViewModels.AutoMapperProfile
             // User mappings
             CreateMap<PreorderPlatform.Entity.Entities.User, UserViewModel>()
                 .ForMember(dest => dest.RoleName, opt => opt.MapFrom(src => src.Role.Name))
+                .ForMember(dest => dest.BusinessName, opt => opt.MapFrom(src => src.Business.Name))
+
                 .ReverseMap();
             CreateMap<PreorderPlatform.Entity.Entities.User, UserUpdateViewModel>().ReverseMap();
             CreateMap<PreorderPlatform.Entity.Entities.User, UserCreateViewModel>().ReverseMap();
@@ -34,14 +37,16 @@ namespace PreorderPlatform.Service.ViewModels.AutoMapperProfile
             CreateMap<PreorderPlatform.Entity.Entities.Role, RoleDetailViewModel>().ReverseMap();
 
             //Category
-            CreateMap<PreorderPlatform.Entity.Entities.Category, BusinessCreateViewModel>().ReverseMap();
-            CreateMap<PreorderPlatform.Entity.Entities.Category, BusinessUpdateViewModel>().ReverseMap();
-            CreateMap<PreorderPlatform.Entity.Entities.Category, BusinessViewModel>().ReverseMap();
+            CreateMap<PreorderPlatform.Entity.Entities.Category, CategoryCreateViewModel>().ReverseMap();
+            CreateMap<PreorderPlatform.Entity.Entities.Category, CategoryUpdateViewModel>().ReverseMap();
+            CreateMap<PreorderPlatform.Entity.Entities.Category, CategoryViewModel>().ReverseMap();
 
             //Product
             CreateMap<PreorderPlatform.Entity.Entities.Product, ProductCreateViewModel>().ReverseMap();
             CreateMap<PreorderPlatform.Entity.Entities.Product, ProductUpdateViewModel>().ReverseMap();
-            CreateMap<PreorderPlatform.Entity.Entities.Product, ProductViewModel>().ReverseMap();
+            CreateMap<PreorderPlatform.Entity.Entities.Product, ProductViewModel>()
+                                                .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Category.Name))
+                                                .ReverseMap();
 
             //Business
             CreateMap<PreorderPlatform.Entity.Entities.Business, BusinessCreateViewModel>().ReverseMap();
@@ -56,7 +61,11 @@ namespace PreorderPlatform.Service.ViewModels.AutoMapperProfile
             //Campaign
             CreateMap<PreorderPlatform.Entity.Entities.Campaign, CampaignCreateViewModel>().ReverseMap();
             CreateMap<PreorderPlatform.Entity.Entities.Campaign, CampaignUpdateViewModel>().ReverseMap();
-            CreateMap<PreorderPlatform.Entity.Entities.Campaign, CampaignViewModel>().ReverseMap();
+            CreateMap<PreorderPlatform.Entity.Entities.Campaign, CampaignViewModel>()            
+                                .ForMember(dest => dest.Business, opt => opt.MapFrom(src => src.Business))
+                                .ForMember(dest => dest.BusinessName, opt => opt.MapFrom(src => src.Business.Name))
+                                .ForMember(dest => dest.CampaignDetails, opt => opt.MapFrom(src => src.CampaignDetails))
+                                .ReverseMap();
 
             //CampaignDetail
             CreateMap<PreorderPlatform.Entity.Entities.CampaignDetail, CampaignDetailCreateViewModel>().ReverseMap();

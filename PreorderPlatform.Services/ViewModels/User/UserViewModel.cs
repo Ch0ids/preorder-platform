@@ -19,10 +19,10 @@ namespace PreorderPlatform.Service.ViewModels.User
         public string? Ward { get; set; }
         public string? District { get; set; }
         public string? Province { get; set; }
-
+        
         public string? RoleName { get; set; }
 
-        public string? Test { get; set; }
+        public string? BusinessName { get; set; }
 
         public bool? Status { get; set; }
     }

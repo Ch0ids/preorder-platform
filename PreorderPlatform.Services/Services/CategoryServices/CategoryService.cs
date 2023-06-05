@@ -23,12 +23,12 @@ namespace PreorderPlatform.Service.Services.CategoryServices
             _mapper = mapper;
         }
 
-        public async Task<List<BusinessViewModel>> GetCategoriesAsync()
+        public async Task<List<CategoryViewModel>> GetCategoriesAsync()
         {
             try
             {
                 var categories = await _categoryRepository.GetAllAsync();
-                return _mapper.Map<List<BusinessViewModel>>(categories);
+                return _mapper.Map<List<CategoryViewModel>>(categories);
             }
             catch (Exception ex)
             {
@@ -36,7 +36,7 @@ namespace PreorderPlatform.Service.Services.CategoryServices
             }
         }
 
-        public async Task<BusinessViewModel> GetCategoryByIdAsync(int id)
+        public async Task<CategoryViewModel> GetCategoryByIdAsync(int id)
         {
             try
             {
@@ -47,7 +47,7 @@ namespace PreorderPlatform.Service.Services.CategoryServices
                     throw new NotFoundException($"Category with ID {id} was not found.");
                 }
 
-                return _mapper.Map<BusinessViewModel>(category);
+                return _mapper.Map<CategoryViewModel>(category);
             }
             catch (NotFoundException)
             {
@@ -60,13 +60,13 @@ namespace PreorderPlatform.Service.Services.CategoryServices
             }
         }
 
-        public async Task<BusinessViewModel> CreateCategoryAsync(BusinessCreateViewModel model)
+        public async Task<CategoryViewModel> CreateCategoryAsync(CategoryCreateViewModel model)
         {
             try
             {
                 var category = _mapper.Map<Category>(model);
                 await _categoryRepository.CreateAsync(category);
-                return _mapper.Map<BusinessViewModel>(category);
+                return _mapper.Map<CategoryViewModel>(category);
             }
             catch (Exception ex)
             {
@@ -74,7 +74,7 @@ namespace PreorderPlatform.Service.Services.CategoryServices
             }
         }
 
-        public async Task UpdateCategoryAsync(BusinessUpdateViewModel model)
+        public async Task UpdateCategoryAsync(CategoryUpdateViewModel model)
         {
             try
             {

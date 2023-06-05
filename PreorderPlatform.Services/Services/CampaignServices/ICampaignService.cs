@@ -11,6 +11,7 @@ namespace PreorderPlatform.Service.Services.CampaignServices
     {
         Task<CampaignViewModel> CreateCampaignAsync(CampaignCreateViewModel model);
         Task DeleteCampaignAsync(int id);
+        Task<List<CampaignViewModel>> GetAllCampaignsWithOwnerAndBusinessAndCampaignDetailsAsync();
         Task<CampaignViewModel> GetCampaignByIdAsync(int id);
         Task<List<CampaignViewModel>> GetCampaignsAsync();
         Task UpdateCampaignAsync(CampaignUpdateViewModel model);

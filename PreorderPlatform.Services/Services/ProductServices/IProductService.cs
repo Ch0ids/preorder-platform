@@ -11,6 +11,7 @@ namespace PreorderPlatform.Service.Services.ProductServices
     {
         Task<ProductViewModel> CreateProductAsync(ProductCreateViewModel model);
         Task DeleteProductAsync(int id);
+        Task<List<ProductViewModel>> GetAllProductsWithCategoryAsync();
         Task<ProductViewModel> GetProductByIdAsync(int id);
         Task<List<ProductViewModel>> GetProductsAsync();
         Task UpdateProductAsync(ProductUpdateViewModel model);

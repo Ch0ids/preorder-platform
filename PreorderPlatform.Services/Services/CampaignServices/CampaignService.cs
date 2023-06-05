@@ -35,6 +35,19 @@ namespace PreorderPlatform.Service.Services.CampaignServices
             }
         }
 
+        //GetAllCampaignsWithOwnerAndBusinessAndCampaignDetailsAsync
+        public async Task<List<CampaignViewModel>> GetAllCampaignsWithOwnerAndBusinessAndCampaignDetailsAsync()
+        {
+            try
+            {
+                var campaigns = await _campaignRepository.GetAllCampaignsWithOwnerAndBusinessAndCampaignDetailsAsync();
+                return _mapper.Map<List<CampaignViewModel>>(campaigns);
+            }
+            catch (Exception ex)
+            {
+                throw new ServiceException("An error occurred while fetching campaigns.", ex);
+            }
+        }
         public async Task<CampaignViewModel> GetCampaignByIdAsync(int id)
         {
             try

@@ -8,6 +8,7 @@ using PreorderPlatform.Service.Services.RoleServices;
 using PreorderPlatform.Service.ViewModels.ApiResponse;
 using PreorderPlatform.Service.Exceptions;
 using PreorderPlatform.Service.ViewModels.Role;
+using PreorderPlatform.Entity.Entities;
 
 namespace PreorderPlatform.API.Controllers
 {
@@ -17,12 +18,24 @@ namespace PreorderPlatform.API.Controllers
     {
         private readonly IRoleService _roleService;
         private readonly IMapper _mapper;
-
-        public RolesController(IRoleService roleService, IMapper mapper)
+        private readonly ILogger<RolesController> _logger;
+       
+        public RolesController(IRoleService roleService, IMapper mapper, ILogger<RolesController> logger)
         {
             _roleService = roleService;
             _mapper = mapper;
+            _logger = logger;
         }
+
+        [HttpPost("/createRole")]
+        public IActionResult CreateRoleTest(Role role)
+        {
+           
+            return Ok("Oke");
+        }
+
+
+
 
         [HttpGet]
         public async Task<IActionResult> GetAllRoles()
