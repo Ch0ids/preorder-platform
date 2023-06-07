@@ -2,7 +2,7 @@
 using PreorderPlatform.Service.ViewModels.Business;
 using PreorderPlatform.Service.ViewModels.BusinessPaymentCredential;
 using PreorderPlatform.Service.ViewModels.Campaign;
-using PreorderPlatform.Service.ViewModels.CampaignDetail;
+using PreorderPlatform.Service.ViewModels.CampaignItem;
 using PreorderPlatform.Service.ViewModels.Category;
 using PreorderPlatform.Service.ViewModels.Order;
 using PreorderPlatform.Service.ViewModels.OrderItem;
@@ -68,9 +68,9 @@ namespace PreorderPlatform.Service.ViewModels.AutoMapperProfile
                                 .ReverseMap();
 
             //CampaignDetail
-            CreateMap<PreorderPlatform.Entity.Entities.CampaignDetail, CampaignDetailCreateViewModel>().ReverseMap();
-            CreateMap<PreorderPlatform.Entity.Entities.CampaignDetail, CampaignDetailUpdateViewModel>().ReverseMap();
-            CreateMap<PreorderPlatform.Entity.Entities.CampaignDetail, CampaignDetailViewModel>().ReverseMap();
+            CreateMap<PreorderPlatform.Entity.Entities.CampaignDetail, CampaignItemCreateViewModel>().ReverseMap();
+            CreateMap<PreorderPlatform.Entity.Entities.CampaignDetail, CampaiugnItemUpdateViewModel>().ReverseMap();
+            CreateMap<PreorderPlatform.Entity.Entities.CampaignDetail, CampaignItemViewModel>().ReverseMap();
 
             //Order
             CreateMap<PreorderPlatform.Entity.Entities.Order, OrderCreateViewModel>().ReverseMap();

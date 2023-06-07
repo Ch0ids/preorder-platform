@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PreorderPlatform.Entity.Migrations
+namespace PreorderPlatform.Service.ViewModels.Campaign.Request
 {
-    internal class Class1
+    public class CampaignSearchRequest
     {
     }
 }

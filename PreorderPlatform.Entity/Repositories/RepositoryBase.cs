@@ -25,16 +25,15 @@ namespace PreorderPlatform.Entity.Repositories
         {
             return await Task.FromResult(_dbSet);
         }
-        public async Task<IEnumerable<T>> GetAllWithIncludeAsync(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includes)
+        public async Task<IEnumerable<T>> GetAllWithIncludeAsync(Expression<Func<T, bool>>? predicate, params Expression<Func<T, object>>[]? includes)
         {
             IQueryable<T> query = _dbSet;
 
-            foreach (var include in includes)
-            {
-                query = query.Include(include);
-            }
+            query = predicate==null ? query : query.Where(predicate);
 
-            return await query.Where(predicate).ToListAsync();
+            query = includes==null||includes.Length==0 ? query : includes.Aggregate(query, (current, include) => current.Include(include));
+
+            return await query.ToListAsync();
         }
         public async Task<IEnumerable<T>> GetAllWithIncludeLoadRelatedEntitiesAsync(Expression<Func<T, bool>> predicate)
         {

@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PreorderPlatform.Service.ViewModels.Campaign
+namespace PreorderPlatform.Service.ViewModels.Campaign.Response
 {
-    public class CampaignViewModel
+    public class CampaignInforResponse
     {
         public int Id { get; set; }
         public string? Name { get; set; }
@@ -28,7 +28,5 @@ namespace PreorderPlatform.Service.ViewModels.Campaign
         public virtual BusinessViewModel? Business { get; set; }
 
         public virtual ICollection<CampaignItemViewModel> CampaignDetails { get; set; }
-
-
     }
 }

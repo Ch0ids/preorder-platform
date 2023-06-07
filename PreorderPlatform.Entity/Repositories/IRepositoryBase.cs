@@ -13,7 +13,7 @@ namespace PreorderPlatform.Entity.Repositories
         Task CreateAsync(T entity);
         Task DeleteAsync(T entity);
         Task<IQueryable<T>> GetAllAsync();
-        Task<IEnumerable<T>> GetAllWithIncludeAsync(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includes);
+        Task<IEnumerable<T>> GetAllWithIncludeAsync(Expression<Func<T, bool>>? predicate, params Expression<Func<T, object>>[]? includes);
         Task<IEnumerable<T>> GetAllWithIncludeLoadRelatedEntitiesAsync(Expression<Func<T, bool>> predicate);
         Task<IEnumerable<T>> GetByConditionAsync(Expression<Func<T, bool>> expression);
         Task<T> GetByIdAsync(int id);

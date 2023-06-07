@@ -1,16 +1,13 @@
-﻿using PreorderPlatform.Service.ViewModels.Business;
-using PreorderPlatform.Service.ViewModels.CampaignItem;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PreorderPlatform.Service.ViewModels.Campaign
+namespace PreorderPlatform.Service.ViewModels.Campaign.Request
 {
-    public class CampaignViewModel
+    public class CampaignCreateRequest
     {
-        public int Id { get; set; }
         public string? Name { get; set; }
         public string? Description { get; set; }
         public DateTime? StartAt { get; set; }
@@ -22,13 +19,5 @@ namespace PreorderPlatform.Service.ViewModels.Campaign
         public bool? Status { get; set; }
         public int? OwnerId { get; set; }
         public int? BusinessId { get; set; }
-
-        public string? BusinessName { get; set; }
-
-        public virtual BusinessViewModel? Business { get; set; }
-
-        public virtual ICollection<CampaignItemViewModel> CampaignDetails { get; set; }
-
-
     }
 }

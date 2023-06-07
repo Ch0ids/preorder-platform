@@ -21,9 +21,8 @@ namespace PreorderPlatform.Entity
     {
         public static void RegisterData(this IServiceCollection services, IConfiguration configuration)
         {
-            string connectionString = configuration.GetConnectionString("PreOrderSystem");
             services.AddDbContext<PreOrderSystemContext>(options
-    => options.UseSqlServer(connectionString));
+    => options.UseSqlServer(configuration.GetConnectionString("PreOrderSystem")));
         }
 
         public static void RegisterRepository(this IServiceCollection services)
