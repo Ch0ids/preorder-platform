@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PreorderPlatform.Service.Utility.Pagination;
 
 namespace PreorderPlatform.Service.Services.CampaignServices
 {
@@ -36,11 +37,12 @@ namespace PreorderPlatform.Service.Services.CampaignServices
         }
 
         //GetAllCampaignsWithOwnerAndBusinessAndCampaignDetailsAsync
-        public async Task<List<CampaignViewModel>> GetAllCampaignsWithOwnerAndBusinessAndCampaignDetailsAsync()
+        public async Task<List<CampaignViewModel>> GetAllCampaignsWithOwnerAndBusinessAndCampaignDetailsAsync(PaginationParam paginationModel)
         {
             try
             {
                 var campaigns = await _campaignRepository.GetAllCampaignsWithOwnerAndBusinessAndCampaignDetailsAsync();
+                campaigns = campaigns.GetWithPaging(paginationModel.Page, paginationModel.PageSize).AsQueryable();
                 return _mapper.Map<List<CampaignViewModel>>(campaigns);
             }
             catch (Exception ex)

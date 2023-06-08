@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using AutoMapper;
-using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using PreorderPlatform.Service.Exceptions;
 using PreorderPlatform.Service.Services.CampaignServices;
+using PreorderPlatform.Service.Utility.Pagination;
 using PreorderPlatform.Service.ViewModels.ApiResponse;
 using PreorderPlatform.Service.ViewModels.Campaign;
-using PreorderPlatform.Service.Exceptions;
 
 namespace PreorderPlatform.API.Controllers
 {
@@ -25,13 +22,23 @@ namespace PreorderPlatform.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllCampaigns()
+        public async Task<IActionResult> GetAllCampaigns(
+            [FromQuery] PaginationParam paginationModel)
         {
             try
             {
-                var campaigns = await _campaignService.GetAllCampaignsWithOwnerAndBusinessAndCampaignDetailsAsync();
-            
-                return Ok(new ApiResponse<List<CampaignViewModel>>(campaigns, "Campaigns fetched successfully.", true, null));
+                var campaigns = await _campaignService.GetAllCampaignsWithOwnerAndBusinessAndCampaignDetailsAsync(paginationModel);
+                //need 1 more funct at service to get total pages & total items
+                //no need param Contructor to pass data
+
+                return Ok(new ApiResponse<List<CampaignViewModel>>
+                    (
+                    campaigns,
+                    "Campaigns fetched successfully.",
+                    true,
+                    new PaginationInfo(0, paginationModel.PageSize, paginationModel.Page, 0)
+                    )
+                );
             }
             catch (Exception ex)
             {

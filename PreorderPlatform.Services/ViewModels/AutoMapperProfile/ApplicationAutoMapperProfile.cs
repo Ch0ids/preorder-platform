@@ -3,7 +3,6 @@ using PreorderPlatform.Service.ViewModels.Business;
 using PreorderPlatform.Service.ViewModels.BusinessPaymentCredential;
 using PreorderPlatform.Service.ViewModels.Campaign;
 using PreorderPlatform.Service.ViewModels.CampaignDetail;
-using PreorderPlatform.Service.ViewModels.CampaignItem;
 using PreorderPlatform.Service.ViewModels.Category;
 using PreorderPlatform.Service.ViewModels.Order;
 using PreorderPlatform.Service.ViewModels.OrderItem;

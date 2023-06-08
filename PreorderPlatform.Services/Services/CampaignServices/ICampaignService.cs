@@ -1,4 +1,5 @@
-﻿using PreorderPlatform.Service.ViewModels.Campaign;
+﻿using PreorderPlatform.Service.Utility.Pagination;
+using PreorderPlatform.Service.ViewModels.Campaign;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace PreorderPlatform.Service.Services.CampaignServices
     {
         Task<CampaignViewModel> CreateCampaignAsync(CampaignCreateViewModel model);
         Task DeleteCampaignAsync(int id);
-        Task<List<CampaignViewModel>> GetAllCampaignsWithOwnerAndBusinessAndCampaignDetailsAsync();
+        Task<List<CampaignViewModel>> GetAllCampaignsWithOwnerAndBusinessAndCampaignDetailsAsync(PaginationParam paginationModel);
         Task<CampaignViewModel> GetCampaignByIdAsync(int id);
         Task<List<CampaignViewModel>> GetCampaignsAsync();
         Task UpdateCampaignAsync(CampaignUpdateViewModel model);

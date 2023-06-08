@@ -1,5 +1,5 @@
 ﻿using PreorderPlatform.Service.ViewModels.Business;
-using PreorderPlatform.Service.ViewModels.CampaignItem;
+using PreorderPlatform.Service.ViewModels.CampaignDetail;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +27,7 @@ namespace PreorderPlatform.Service.ViewModels.Campaign
 
         public virtual BusinessViewModel? Business { get; set; }
 
-        public virtual ICollection<CampaignItemViewModel> CampaignDetails { get; set; }
+        public virtual ICollection<CampaignDetailViewModel> CampaignDetails { get; set; }
 
 
     }
