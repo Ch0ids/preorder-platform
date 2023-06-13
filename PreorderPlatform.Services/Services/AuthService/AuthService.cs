@@ -4,7 +4,7 @@ using PreorderPlatform.Entity.Entities;
 using PreorderPlatform.Entity.Repositories.UserRepositories;
 using PreorderPlatform.Entity.Repositories.UserRepository;
 using PreorderPlatform.Service.Services.AuthService;
-using PreorderPlatform.Service.ViewModels.User;
+using PreorderPlatform.Service.ViewModels.User.Request;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -29,7 +29,7 @@ namespace PreorderPlatform.Service.Services.AuthService
 
         // Các phương thức khác liên quan đến xác thực và đăng nhập
 
-        public async Task<User> LoginService(LoginViewModel loginViewModel)
+        public async Task<User> LoginService(LoginRequest loginViewModel)
         {
             // Thực hiện kiểm tra tên đăng nhập và mật khẩu
             // Trả về đối tượng User nếu thông tin đăng nhập hợp lệ

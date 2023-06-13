@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace PreorderPlatform.Service.Utility.Pagination
 {
-    public static class PagedList
+    public static class PaginationHelper
     {
         public static IEnumerable<TObject> GetWithPaging<TObject>(this IEnumerable<TObject> source, int page, int pageSize, int safePageSizeLimit = PaginationConstant.MaxPageSize)
         where TObject : class
         {
+            //nhập số trang quá lớn
             if (pageSize > safePageSizeLimit)
             {
                 throw new Exception("Input page size is over safe limitation.");

@@ -1,13 +1,14 @@
 ﻿using AutoMapper;
 using PreorderPlatform.Entity.Entities;
 using PreorderPlatform.Entity.Repositories.ProductRepositories;
-using PreorderPlatform.Service.ViewModels.Product;
 using PreorderPlatform.Service.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PreorderPlatform.Service.ViewModels.Product.Request;
+using PreorderPlatform.Service.ViewModels.Product.Response;
 
 namespace PreorderPlatform.Service.Services.ProductServices
 {
@@ -22,12 +23,12 @@ namespace PreorderPlatform.Service.Services.ProductServices
             _mapper = mapper;
         }
 
-        public async Task<List<ProductViewModel>> GetProductsAsync()
+        public async Task<List<ProductResponse>> GetProductsAsync()
         {
             try
             {
                 var products = await _productRepository.GetAllAsync();
-                return _mapper.Map<List<ProductViewModel>>(products);
+                return _mapper.Map<List<ProductResponse>>(products);
             }
             catch (Exception ex)
             {
@@ -36,12 +37,12 @@ namespace PreorderPlatform.Service.Services.ProductServices
         }
 
         //GetAllProductsWithCategoryAsync
-        public async Task<List<ProductViewModel>> GetAllProductsWithCategoryAsync()
+        public async Task<List<ProductResponse>> GetAllProductsWithCategoryAsync()
         {
             try
             {
                 var products = await _productRepository.GetAllProductsWithCategoryAsync();
-                return _mapper.Map<List<ProductViewModel>>(products);
+                return _mapper.Map<List<ProductResponse>>(products);
             }
             catch (Exception ex)
             {
@@ -49,7 +50,7 @@ namespace PreorderPlatform.Service.Services.ProductServices
             }
         }
 
-        public async Task<ProductViewModel> GetProductByIdAsync(int id)
+        public async Task<ProductResponse> GetProductByIdAsync(int id)
         {
             try
             {
@@ -60,7 +61,7 @@ namespace PreorderPlatform.Service.Services.ProductServices
                     throw new NotFoundException($"Product with ID {id} was not found.");
                 }
 
-                return _mapper.Map<ProductViewModel>(product);
+                return _mapper.Map<ProductResponse>(product);
             }
             catch (NotFoundException)
             {
@@ -73,13 +74,13 @@ namespace PreorderPlatform.Service.Services.ProductServices
             }
         }
 
-        public async Task<ProductViewModel> CreateProductAsync(ProductCreateViewModel model)
+        public async Task<ProductResponse> CreateProductAsync(ProductCreateRequest model)
         {
             try
             {
                 var product = _mapper.Map<Product>(model);
                 await _productRepository.CreateAsync(product);
-                return _mapper.Map<ProductViewModel>(product);
+                return _mapper.Map<ProductResponse>(product);
             }
             catch (Exception ex)
             {
@@ -87,7 +88,7 @@ namespace PreorderPlatform.Service.Services.ProductServices
             }
         }
 
-        public async Task UpdateProductAsync(ProductUpdateViewModel model)
+        public async Task UpdateProductAsync(ProductUpdateRequest model)
         {
             try
             {

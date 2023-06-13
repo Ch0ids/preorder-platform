@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PreorderPlatform.Service.ViewModels.Business.Response;
+using PreorderPlatform.Service.ViewModels.CampaignPrice.Response;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +22,5 @@ namespace PreorderPlatform.Service.ViewModels.Campaign.Response
         public bool? Status { get; set; }
         public int? OwnerId { get; set; }
         public int? BusinessId { get; set; }
-        public string? BusinessName { get; set; }
     }
 }

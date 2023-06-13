@@ -15,6 +15,8 @@ namespace PreorderPlatform.Entity.Repositories
         private readonly PreOrderSystemContext _context;
         private readonly DbSet<T> _dbSet;
 
+        public IQueryable<T> Table => _dbSet;
+
         public RepositoryBase(PreOrderSystemContext context)
         {
             _context = context;
@@ -44,6 +46,7 @@ namespace PreorderPlatform.Entity.Repositories
 
             return await query.Where(predicate).ToListAsync();
         }
+
         public async Task<T> GetByIdAsync(int id)
         {
             return await _dbSet.FindAsync(id);

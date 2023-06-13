@@ -19,7 +19,7 @@ namespace PreorderPlatform.Entity
 {
     public static class ModuleRegister
     {
-        public static void RegisterData(this IServiceCollection services, IConfiguration configuration)
+        public static void ConfigureDBContext(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<PreOrderSystemContext>(options
     => options.UseSqlServer(configuration.GetConnectionString("PreOrderSystem")));

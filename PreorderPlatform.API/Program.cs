@@ -57,9 +57,9 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 
-builder.Services.AddAutoMapper(typeof(ApplicationAutoMapperProfile));
+//builder.Services.AddAutoMapper(typeof(ApplicationAutoMapperProfile));
 
-// Add the following lines within the ConfigureServices method
+// Add the following lines within the ConfigureServices method : AutoMapper, DBContext, Repos, Services
 builder.Services.RegisterBusiness(builder.Configuration);
 
 var jwtSettings = builder.Configuration.GetSection("Jwt");

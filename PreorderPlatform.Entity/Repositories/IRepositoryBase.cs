@@ -9,7 +9,8 @@ using System.Threading.Tasks;
 namespace PreorderPlatform.Entity.Repositories
 {
     public interface IRepositoryBase<T> where T : class
-    {  
+    {
+        IQueryable<T> Table { get; }
         Task CreateAsync(T entity);
         Task DeleteAsync(T entity);
         Task<IQueryable<T>> GetAllAsync();

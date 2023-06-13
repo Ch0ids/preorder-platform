@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PreorderPlatform.Service.ViewModels.User
+namespace PreorderPlatform.Service.ViewModels.User.Request
 {
-    public class LoginViewModel
+    public class LoginRequest
     {
         public string Email { get; set; }
         public string Password { get; set; }

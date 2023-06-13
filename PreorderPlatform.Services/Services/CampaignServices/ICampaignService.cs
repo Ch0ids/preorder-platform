@@ -1,5 +1,7 @@
-﻿using PreorderPlatform.Service.Utility.Pagination;
-using PreorderPlatform.Service.ViewModels.Campaign;
+﻿using PreorderPlatform.Service.Enum;
+using PreorderPlatform.Service.Utility.Pagination;
+using PreorderPlatform.Service.ViewModels.Campaign.Request;
+using PreorderPlatform.Service.ViewModels.Campaign.Response;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +12,16 @@ namespace PreorderPlatform.Service.Services.CampaignServices
 {
     public interface ICampaignService
     {
-        Task<CampaignViewModel> CreateCampaignAsync(CampaignCreateViewModel model);
+        Task<CampaignResponse> CreateCampaignAsync(CampaignCreateRequest model);
         Task DeleteCampaignAsync(int id);
-        Task<List<CampaignViewModel>> GetAllCampaignsWithOwnerAndBusinessAndCampaignDetailsAsync(PaginationParam paginationModel);
-        Task<CampaignViewModel> GetCampaignByIdAsync(int id);
-        Task<List<CampaignViewModel>> GetCampaignsAsync();
-        Task UpdateCampaignAsync(CampaignUpdateViewModel model);
+        Task<List<CampaignResponse>> GetAllCampaignsWithOwnerAndBusinessAndCampaignDetailsAsync();
+        Task<CampaignResponse> GetCampaignByIdAsync(int id);
+        Task<List<CampaignResponse>> GetCampaignsAsync();
+        Task UpdateCampaignAsync(CampaignUpdateRequest model);
+        //Get all campaign/filtered with sort&pagiantion
+        IList<CampaignResponse> Get(
+            PaginationParam<CampaignEnum.CampaignSort> paginationModel, 
+            CampaignSearchRequest filterModel
+            );
     }
 }

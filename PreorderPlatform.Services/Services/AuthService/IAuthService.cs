@@ -1,5 +1,5 @@
 ﻿using PreorderPlatform.Entity.Entities;
-using PreorderPlatform.Service.ViewModels.User;
+using PreorderPlatform.Service.ViewModels.User.Request;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ namespace PreorderPlatform.Service.Services.AuthService
 {
     public interface IAuthService
     {
-        Task<User> LoginService(LoginViewModel loginViewModel);
+        Task<User> LoginService(LoginRequest loginViewModel);
         // Add other method signatures related to authentication and login
     }
 }

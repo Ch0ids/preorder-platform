@@ -1,20 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
-using PreorderPlatform.Entity.Entities;
-using PreorderPlatform.Service.ViewModels.User;
+﻿using AutoMapper;
+using PreorderPlatform.Service.ViewModels.User.Request;
+using PreorderPlatform.Service.ViewModels.User.Response;
 
 namespace PreorderPlatform.Service.ViewModels.AutoMapperProfile
 {
-    public class UserMapper : Profile
+    public static class UserMapper
     {
-        public UserMapper()
+        public static void ConfigUserMapper(this IMapperConfigurationExpression configuration)
         {
-            //CreateMap<PreorderPlatform.Entity.Entities.User, UserViewModel>();
-            //CreateMap<UserViewModel, PreorderPlatform.Entity.Entities.User>();
+            configuration.CreateMap<PreorderPlatform.Entity.Entities.User, UserResponse>()
+    .ForMember(dest => dest.RoleName, opt => opt.MapFrom(src => src.Role.Name))
+    .ForMember(dest => dest.BusinessName, opt => opt.MapFrom(src => src.Business.Name))
+    .ReverseMap();
+            configuration.CreateMap<PreorderPlatform.Entity.Entities.User, UserUpdateRequest>().ReverseMap();
+            configuration.CreateMap<PreorderPlatform.Entity.Entities.User, UserCreateRequest>().ReverseMap();
         }
     }
 }

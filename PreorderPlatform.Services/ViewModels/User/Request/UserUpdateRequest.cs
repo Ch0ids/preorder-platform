@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PreorderPlatform.Service.ViewModels.User
+namespace PreorderPlatform.Service.ViewModels.User.Request
 {
-    public class UserUpdateViewModel
+    public class UserUpdateRequest
     {
         public int Id { get; set; }
         public string? FirstName { get; set; }

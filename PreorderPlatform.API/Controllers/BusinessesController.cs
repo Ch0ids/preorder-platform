@@ -6,8 +6,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PreorderPlatform.Service.Services.BusinessServices;
 using PreorderPlatform.Service.ViewModels.ApiResponse;
-using PreorderPlatform.Service.ViewModels.Business;
 using PreorderPlatform.Service.Exceptions;
+using PreorderPlatform.Service.ViewModels.Business.Request;
+using PreorderPlatform.Service.ViewModels.Business.Response;
 
 namespace PreorderPlatform.API.Controllers
 {
@@ -30,7 +31,7 @@ namespace PreorderPlatform.API.Controllers
             try
             {
                 var businesses = await _businessService.GetBusinessesAsync();
-                return Ok(new ApiResponse<List<BusinessViewModel>>(businesses, "Businesses fetched successfully.", true, null));
+                return Ok(new ApiResponse<List<BusinessResponse>>(businesses, "Businesses fetched successfully.", true, null));
             }
             catch (Exception ex)
             {
@@ -45,7 +46,7 @@ namespace PreorderPlatform.API.Controllers
             try
             {
                 var business = await _businessService.GetBusinessByIdAsync(id);
-                return Ok(new ApiResponse<BusinessViewModel>(business, "Business fetched successfully.", true, null));
+                return Ok(new ApiResponse<BusinessResponse>(business, "Business fetched successfully.", true, null));
             }
             catch (NotFoundException ex)
             {
@@ -59,7 +60,7 @@ namespace PreorderPlatform.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateBusiness(BusinessCreateViewModel model)
+        public async Task<IActionResult> CreateBusiness(BusinessCreateRequest model)
         {
             try
             {
@@ -67,7 +68,7 @@ namespace PreorderPlatform.API.Controllers
 
                 return CreatedAtAction(nameof(GetBusinessById),
                                        new { id = business.Id },
-                                       new ApiResponse<BusinessViewModel>(business, "Business created successfully.", true, null));
+                                       new ApiResponse<BusinessResponse>(business, "Business created successfully.", true, null));
             }
             catch (Exception ex)
             {
@@ -77,7 +78,7 @@ namespace PreorderPlatform.API.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateBusiness(BusinessUpdateViewModel model)
+        public async Task<IActionResult> UpdateBusiness(BusinessUpdateRequest model)
         {
             try
             {

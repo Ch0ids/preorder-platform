@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PreorderPlatform.Service.ViewModels.CampaignDetail
+namespace PreorderPlatform.Service.ViewModels.CampaignPrice.Request
 {
-    public class CampaignDetailCreateViewModel
+    public class CampaignPriceCreateRequest
     {
         public int? ProductId { get; set; }
         public int? MinOrder { get; set; }

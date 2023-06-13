@@ -1,4 +1,5 @@
-﻿using PreorderPlatform.Service.ViewModels.Product;
+﻿using PreorderPlatform.Service.ViewModels.Product.Request;
+using PreorderPlatform.Service.ViewModels.Product.Response;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +10,11 @@ namespace PreorderPlatform.Service.Services.ProductServices
 {
     public interface IProductService
     {
-        Task<ProductViewModel> CreateProductAsync(ProductCreateViewModel model);
+        Task<ProductResponse> CreateProductAsync(ProductCreateRequest model);
         Task DeleteProductAsync(int id);
-        Task<List<ProductViewModel>> GetAllProductsWithCategoryAsync();
-        Task<ProductViewModel> GetProductByIdAsync(int id);
-        Task<List<ProductViewModel>> GetProductsAsync();
-        Task UpdateProductAsync(ProductUpdateViewModel model);
+        Task<List<ProductResponse>> GetAllProductsWithCategoryAsync();
+        Task<ProductResponse> GetProductByIdAsync(int id);
+        Task<List<ProductResponse>> GetProductsAsync();
+        Task UpdateProductAsync(ProductUpdateRequest model);
     }
 }

@@ -1,5 +1,6 @@
-﻿using PreorderPlatform.Service.ViewModels.Business;
-using PreorderPlatform.Service.ViewModels.CampaignDetail;
+﻿using PreorderPlatform.Service.ViewModels.Business.Response;
+using PreorderPlatform.Service.ViewModels.CampaignPrice.Response;
+using PreorderPlatform.Service.ViewModels.User.Response;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PreorderPlatform.Service.ViewModels.Campaign.Response
 {
-    public class CampaignInforResponse
+    public class CampaignDetailResponse
     {
         public int Id { get; set; }
         public string? Name { get; set; }
@@ -20,13 +21,9 @@ namespace PreorderPlatform.Service.ViewModels.Campaign.Response
         public DateTime? CreateAt { get; set; }
         public DateTime? ModifiedAt { get; set; }
         public bool? Status { get; set; }
-        public int? OwnerId { get; set; }
-        public int? BusinessId { get; set; }
 
-        public string? BusinessName { get; set; }
-
-        public virtual BusinessViewModel? Business { get; set; }
-
-        public virtual ICollection<CampaignDetailViewModel> CampaignDetails { get; set; }
+        public virtual BusinessResponse? Business { get; set; }
+        public virtual UserResponse? Owner { get; set; }
+        public virtual ICollection<CampaignPriceResponse>? CampaignDetails { get; set; }
     }
 }

@@ -9,13 +9,14 @@ using PreorderPlatform.Entity.Entities;
 using PreorderPlatform.Service.Services.AuthService;
 using PreorderPlatform.Service.Services.UserServices;
 using PreorderPlatform.Service.ViewModels.ApiResponse;
-using PreorderPlatform.Service.ViewModels.User;
 using PreorderPlatform.Service.Services.Exceptions;
 using PreorderPlatform.Service.Exceptions;
 using BCrypt;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using PreorderPlatform.Service.ViewModels.User.Request;
+using PreorderPlatform.Service.ViewModels.User.Response;
 
 namespace PreorderPlatform.API.Controllers
 {
@@ -38,7 +39,7 @@ namespace PreorderPlatform.API.Controllers
             try
             {
                 var users = await _userService.GetAllUsersWithRoleAndBusinessAsync();
-                return Ok(new ApiResponse<List<UserViewModel>>(users, "Users fetched successfully.", true, null));
+                return Ok(new ApiResponse<List<UserResponse>>(users, "Users fetched successfully.", true, null));
             }
             catch (Exception ex)
             {
@@ -53,7 +54,7 @@ namespace PreorderPlatform.API.Controllers
             try
             {
                 var user = await _userService.GetUserByIdAsync(id);
-                return Ok(new ApiResponse<UserViewModel>(user, "User fetched successfully.", true, null));
+                return Ok(new ApiResponse<UserResponse>(user, "User fetched successfully.", true, null));
             }
             catch (NotFoundException ex)
             {
@@ -72,7 +73,7 @@ namespace PreorderPlatform.API.Controllers
             try
             {
                 var user = await _userService.GetUserWithRoleAndBusinessByIdAsync(id);
-                return Ok(new ApiResponse<UserViewModel>(user, "User fetched successfully.", true, null));
+                return Ok(new ApiResponse<UserResponse>(user, "User fetched successfully.", true, null));
             }
             catch (NotFoundException ex)
             {
@@ -87,7 +88,7 @@ namespace PreorderPlatform.API.Controllers
 
         [HttpPost]
         
-        public async Task<IActionResult> CreateUser(UserCreateViewModel model)
+        public async Task<IActionResult> CreateUser(UserCreateRequest model)
         {
             try
             {
@@ -97,7 +98,7 @@ namespace PreorderPlatform.API.Controllers
                 
                 return CreatedAtAction(nameof(GetUserById),
                                        new { id = user.Id },
-                                       new ApiResponse<UserViewModel>(user, "User created successfully.", true, null));
+                                       new ApiResponse<UserResponse>(user, "User created successfully.", true, null));
             }
             catch (Exception ex)
             {
@@ -107,7 +108,7 @@ namespace PreorderPlatform.API.Controllers
         }
 
         [HttpPost("test")]
-        public async Task<IActionResult> Test(UserCreateViewModel model)
+        public async Task<IActionResult> Test(UserCreateRequest model)
         {
            
             return Ok(new ApiResponse<object>(null, "tét.", true, null));
@@ -115,7 +116,7 @@ namespace PreorderPlatform.API.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateUser(UserUpdateViewModel model)
+        public async Task<IActionResult> UpdateUser(UserUpdateRequest model)
         {
             try
             {

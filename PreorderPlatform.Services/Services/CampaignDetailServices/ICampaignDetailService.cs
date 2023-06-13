@@ -1,4 +1,5 @@
-﻿using PreorderPlatform.Service.ViewModels.CampaignDetail;
+﻿using PreorderPlatform.Service.ViewModels.CampaignPrice.Request;
+using PreorderPlatform.Service.ViewModels.CampaignPrice.Response;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +10,11 @@ namespace PreorderPlatform.Service.Services.CampaignDetailServices
 {
     public interface ICampaignDetailService
     {
-        Task<CampaignDetailViewModel> CreateCampaignDetailAsync(CampaignDetailCreateViewModel model);
+        Task<CampaignPriceResponse> CreateCampaignDetailAsync(CampaignPriceCreateRequest model);
         Task DeleteCampaignDetailAsync(int id);
-        Task<List<CampaignDetailViewModel>> GetAllCampainDetailsWithProductAsync();
-        Task<CampaignDetailViewModel> GetCampaignDetailByIdAsync(int id);
-        Task<List<CampaignDetailViewModel>> GetCampaignDetailsAsync();
-        Task UpdateCampaignDetailAsync(CampaignDetailUpdateViewModel model);
+        Task<List<CampaignPriceResponse>> GetAllCampainDetailsWithProductAsync();
+        Task<CampaignPriceResponse> GetCampaignDetailByIdAsync(int id);
+        Task<List<CampaignPriceResponse>> GetCampaignDetailsAsync();
+        Task UpdateCampaignDetailAsync(CampaignPriceUpdateRequest model);
     }
 }

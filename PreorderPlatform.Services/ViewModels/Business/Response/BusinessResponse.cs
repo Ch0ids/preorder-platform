@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PreorderPlatform.Service.ViewModels.Business
+namespace PreorderPlatform.Service.ViewModels.Business.Response
 {
-    public class BusinessViewModel
+    public class BusinessResponse
     {
         public int Id { get; set; }
         public string? Name { get; set; }

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace PreorderPlatform.Service.ViewModels.User
+namespace PreorderPlatform.Service.ViewModels.User.Request
 {
-    public class UserCreateViewModel
+    public class UserCreateRequest
     {
         [Required(ErrorMessage = "First name is required.")]
         [StringLength(50, ErrorMessage = "First name cannot be longer than {1} characters.")]

@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using PreorderPlatform.Service.Enum;
 using PreorderPlatform.Service.Exceptions;
 using PreorderPlatform.Service.Services.CampaignServices;
 using PreorderPlatform.Service.Utility.Pagination;
 using PreorderPlatform.Service.ViewModels.ApiResponse;
-using PreorderPlatform.Service.ViewModels.Campaign;
+using PreorderPlatform.Service.ViewModels.Campaign.Request;
+using PreorderPlatform.Service.ViewModels.Campaign.Response;
 
 namespace PreorderPlatform.API.Controllers
 {
@@ -22,21 +24,25 @@ namespace PreorderPlatform.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllCampaigns(
-            [FromQuery] PaginationParam paginationModel)
-        {
+        //localhost/filterModelRequest
+        public IActionResult GetAllCampaigns(
+            [FromQuery]PaginationParam<CampaignEnum.CampaignSort> paginationModel,
+            [FromQuery]CampaignSearchRequest searchModel
+            )
+        {  
             try
             {
-                var campaigns = await _campaignService.GetAllCampaignsWithOwnerAndBusinessAndCampaignDetailsAsync(paginationModel);
-                //need 1 more funct at service to get total pages & total items
-                //no need param Contructor to pass data
+                var start = DateTime.Now;
+                var campaigns = _campaignService.Get(paginationModel, searchModel);
+                Console.Write(DateTime.Now.Subtract(start).Milliseconds);
+                //int totalPages = await _campaignService.Get(paginationModel);
 
-                return Ok(new ApiResponse<List<CampaignViewModel>>
+                return Ok(new ApiResponse<IList<CampaignResponse>>
                     (
                     campaigns,
                     "Campaigns fetched successfully.",
                     true,
-                    new PaginationInfo(0, paginationModel.PageSize, paginationModel.Page, 0)
+                    new PaginationInfo(campaigns.Count, paginationModel.PageSize, paginationModel.Page, (int)Math.Ceiling(campaigns.Count/(double)paginationModel.PageSize))
                     )
                 );
             }
@@ -53,7 +59,7 @@ namespace PreorderPlatform.API.Controllers
             try
             {
                 var campaign = await _campaignService.GetCampaignByIdAsync(id);
-                return Ok(new ApiResponse<CampaignViewModel>(campaign, "Campaign fetched successfully.", true, null));
+                return Ok(new ApiResponse<CampaignResponse>(campaign, "Campaign fetched successfully.", true, null));
             }
             catch (NotFoundException ex)
             {
@@ -67,7 +73,7 @@ namespace PreorderPlatform.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateCampaign(CampaignCreateViewModel model)
+        public async Task<IActionResult> CreateCampaign(CampaignCreateRequest model)
         {
             try
             {
@@ -75,7 +81,7 @@ namespace PreorderPlatform.API.Controllers
 
                 return CreatedAtAction(nameof(GetCampaignById),
                                        new { id = campaign.Id },
-                                       new ApiResponse<CampaignViewModel>(campaign, "Campaign created successfully.", true, null));
+                                       new ApiResponse<CampaignResponse>(campaign, "Campaign created successfully.", true, null));
             }
             catch (Exception ex)
             {
@@ -85,7 +91,7 @@ namespace PreorderPlatform.API.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateCampaign(CampaignUpdateViewModel model)
+        public async Task<IActionResult> UpdateCampaign(CampaignUpdateRequest model)
         {
             try
             {

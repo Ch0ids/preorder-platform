@@ -2,14 +2,14 @@
 using PreorderPlatform.Entity.Entities;
 using PreorderPlatform.Entity.Repositories.UserRepositories;
 using PreorderPlatform.Entity.Repositories.UserRepository;
-using PreorderPlatform.Service.ViewModels.User;
 using PreorderPlatform.Service.Exceptions;
-using PreorderPlatform.Service.ViewModels.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PreorderPlatform.Service.ViewModels.User.Request;
+using PreorderPlatform.Service.ViewModels.User.Response;
 
 namespace PreorderPlatform.Service.Services.UserServices
 {
@@ -24,12 +24,12 @@ namespace PreorderPlatform.Service.Services.UserServices
             _mapper = mapper;
         }
 
-        public async Task<List<UserViewModel>> GetUsersAsync()
+        public async Task<List<UserResponse>> GetUsersAsync()
         {
             try
             {
                 var users = await _userRepository.GetAllAsync();
-                return _mapper.Map<List<UserViewModel>>(users);
+                return _mapper.Map<List<UserResponse>>(users);
             }
             catch (Exception ex)
             {
@@ -38,12 +38,12 @@ namespace PreorderPlatform.Service.Services.UserServices
         }
 
         //GetAllUsersWithRoleAndBusinessAsync
-        public async Task<List<UserViewModel>> GetAllUsersWithRoleAndBusinessAsync()
+        public async Task<List<UserResponse>> GetAllUsersWithRoleAndBusinessAsync()
         {
             try
             {
                 var users = await _userRepository.GetAllUsersWithRoleAndBusinessAsync();
-                return _mapper.Map<List<UserViewModel>>(users);
+                return _mapper.Map<List<UserResponse>>(users);
             }
             catch (Exception ex)
             {
@@ -52,7 +52,7 @@ namespace PreorderPlatform.Service.Services.UserServices
         }
 
 
-        public async Task<UserViewModel> GetUserByIdAsync(int id)
+        public async Task<UserResponse> GetUserByIdAsync(int id)
         {
             try
             {
@@ -63,7 +63,7 @@ namespace PreorderPlatform.Service.Services.UserServices
                     throw new NotFoundException($"User with ID {id} was not found.");
                 }
 
-                return _mapper.Map<UserViewModel>(user);
+                return _mapper.Map<UserResponse>(user);
             }
             catch (NotFoundException)
             {
@@ -76,7 +76,7 @@ namespace PreorderPlatform.Service.Services.UserServices
             }
         }
 
-        public async Task<UserViewModel> GetUserWithRoleAndBusinessByIdAsync(int id)
+        public async Task<UserResponse> GetUserWithRoleAndBusinessByIdAsync(int id)
         {
             try
             {
@@ -87,7 +87,7 @@ namespace PreorderPlatform.Service.Services.UserServices
                     throw new NotFoundException($"User with ID {id} was not found.");
                 }
 
-                return _mapper.Map<UserViewModel>(user);
+                return _mapper.Map<UserResponse>(user);
             }
             catch (NotFoundException)
             {
@@ -101,13 +101,13 @@ namespace PreorderPlatform.Service.Services.UserServices
         }
 
 
-        public async Task<UserViewModel> CreateUserAsync(UserCreateViewModel model)
+        public async Task<UserResponse> CreateUserAsync(UserCreateRequest model)
         {
             try
             {
                 var user = _mapper.Map<User>(model);
                 await _userRepository.CreateAsync(user);
-                return _mapper.Map<UserViewModel>(user);
+                return _mapper.Map<UserResponse>(user);
             }
             catch (Exception ex)
             {
@@ -115,7 +115,7 @@ namespace PreorderPlatform.Service.Services.UserServices
             }
         }
 
-        public async Task UpdateUserAsync(UserUpdateViewModel model)
+        public async Task UpdateUserAsync(UserUpdateRequest model)
         {
             try
             {

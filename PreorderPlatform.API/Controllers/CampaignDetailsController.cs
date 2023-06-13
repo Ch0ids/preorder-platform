@@ -6,8 +6,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PreorderPlatform.Service.ViewModels.ApiResponse;
 using PreorderPlatform.Service.Exceptions;
-using PreorderPlatform.Service.ViewModels.CampaignDetail;
 using PreorderPlatform.Service.Services.CampaignDetailServices;
+using PreorderPlatform.Service.ViewModels.CampaignPrice.Request;
+using PreorderPlatform.Service.ViewModels.CampaignPrice.Response;
 
 namespace PreorderPlatform.API.Controllers
 {
@@ -30,7 +31,7 @@ namespace PreorderPlatform.API.Controllers
             try
             {
                 var campaignDetailsList = await _campaignDetailService.GetAllCampainDetailsWithProductAsync();
-                return Ok(new ApiResponse<List<CampaignDetailViewModel>>(campaignDetailsList, "Campaign details fetched successfully.", true, null));
+                return Ok(new ApiResponse<List<CampaignPriceResponse>>(campaignDetailsList, "Campaign details fetched successfully.", true, null));
             }
             catch (Exception ex)
             {
@@ -45,7 +46,7 @@ namespace PreorderPlatform.API.Controllers
             try
             {
                 var campaignDetails = await _campaignDetailService.GetCampaignDetailByIdAsync(id);
-                return Ok(new ApiResponse<CampaignDetailViewModel>(campaignDetails, "Campaign detail fetched successfully.", true, null));
+                return Ok(new ApiResponse<CampaignPriceResponse>(campaignDetails, "Campaign detail fetched successfully.", true, null));
             }
             catch (NotFoundException ex)
             {
@@ -59,7 +60,7 @@ namespace PreorderPlatform.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateCampaignDetails(CampaignDetailCreateViewModel model)
+        public async Task<IActionResult> CreateCampaignDetails(CampaignPriceCreateRequest model)
         {
             try
             {
@@ -67,7 +68,7 @@ namespace PreorderPlatform.API.Controllers
 
                 return CreatedAtAction(nameof(GetCampaignDetailsById),
                 new { id = campaignDetails.Id },
-                                       new ApiResponse<CampaignDetailViewModel>(campaignDetails, "Campaign detail created successfully.", true, null));
+                                       new ApiResponse<CampaignPriceResponse>(campaignDetails, "Campaign detail created successfully.", true, null));
             }
             catch (Exception ex)
             {
@@ -77,7 +78,7 @@ namespace PreorderPlatform.API.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateCampaignDetails(CampaignDetailUpdateViewModel model)
+        public async Task<IActionResult> UpdateCampaignDetails(CampaignPriceUpdateRequest model)
         {
             try
             {

@@ -1,4 +1,8 @@
-﻿using System;
+﻿using AutoMapper;
+using PreorderPlatform.Service.ViewModels.Business.Request;
+using PreorderPlatform.Service.ViewModels.Business.Response;
+using PreorderPlatform.Service.ViewModels.Category;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +10,13 @@ using System.Threading.Tasks;
 
 namespace PreorderPlatform.Service.ViewModels.AutoMapperProfile
 {
-    internal class CategoryMapper
+    public static class CategoryMapper
     {
+        public static void ConfigCategoryMapper(this IMapperConfigurationExpression configuration)
+        {
+            configuration.CreateMap<PreorderPlatform.Entity.Entities.Category, CategoryCreateViewModel>().ReverseMap();
+            configuration.CreateMap<PreorderPlatform.Entity.Entities.Category, CategoryUpdateViewModel>().ReverseMap();
+            configuration.CreateMap<PreorderPlatform.Entity.Entities.Category, CategoryViewModel>().ReverseMap();
+        }
     }
 }

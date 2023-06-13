@@ -1,4 +1,5 @@
-﻿using PreorderPlatform.Service.ViewModels.Business;
+﻿using PreorderPlatform.Service.ViewModels.Business.Request;
+using PreorderPlatform.Service.ViewModels.Business.Response;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +10,10 @@ namespace PreorderPlatform.Service.Services.BusinessServices
 {
     public interface IBusinessService
     {
-        Task<BusinessViewModel> CreateBusinessAsync(BusinessCreateViewModel model);
+        Task<BusinessResponse> CreateBusinessAsync(BusinessCreateRequest model);
         Task DeleteBusinessAsync(int id);
-        Task<BusinessViewModel> GetBusinessByIdAsync(int id);
-        Task<List<BusinessViewModel>> GetBusinessesAsync();
-        Task UpdateBusinessAsync(BusinessUpdateViewModel model);
+        Task<BusinessResponse> GetBusinessByIdAsync(int id);
+        Task<List<BusinessResponse>> GetBusinessesAsync();
+        Task UpdateBusinessAsync(BusinessUpdateRequest model);
     }
 }

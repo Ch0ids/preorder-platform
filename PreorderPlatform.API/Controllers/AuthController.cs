@@ -5,11 +5,11 @@ using PreorderPlatform.Entity.Entities;
 using PreorderPlatform.Service.Services.AuthService;
 using PreorderPlatform.Service.Services.UserServices;
 using System.Drawing.Text;
-using PreorderPlatform.Service.ViewModels.User;
 using PreorderPlatform.Service.ViewModels.ApiResponse;
 using Microsoft.AspNetCore.Authorization;
 using System.Data;
 using PreorderPlatform.Service.Utility.CustomAuthorizeAttribute;
+using PreorderPlatform.Service.ViewModels.User.Request;
 
 namespace PreorderPlatform.API.Controllers
 {
@@ -61,7 +61,7 @@ namespace PreorderPlatform.API.Controllers
 
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login(LoginViewModel model)
+        public async Task<IActionResult> Login(LoginRequest model)
         {
             // Validate the user's credentials and retrieve the user
             // (replace this with your own logic)

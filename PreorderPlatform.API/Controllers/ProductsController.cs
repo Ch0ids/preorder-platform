@@ -5,9 +5,10 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PreorderPlatform.Service.Services.ProductServices;
 using PreorderPlatform.Service.ViewModels.ApiResponse;
-using PreorderPlatform.Service.ViewModels.Product;
 using PreorderPlatform.Service.Services.Exceptions;
 using PreorderPlatform.Service.Exceptions;
+using PreorderPlatform.Service.ViewModels.Product.Request;
+using PreorderPlatform.Service.ViewModels.Product.Response;
 
 namespace PreorderPlatform.API.Controllers
 {
@@ -28,7 +29,7 @@ namespace PreorderPlatform.API.Controllers
             try
             {
                 var products = await _productService.GetAllProductsWithCategoryAsync();
-                return Ok(new ApiResponse<List<ProductViewModel>>(products, "Products fetched successfully.", true, null));
+                return Ok(new ApiResponse<List<ProductResponse>>(products, "Products fetched successfully.", true, null));
             }
             catch (Exception ex)
             {
@@ -43,7 +44,7 @@ namespace PreorderPlatform.API.Controllers
             try
             {
                 var product = await _productService.GetProductByIdAsync(id);
-                return Ok(new ApiResponse<ProductViewModel>(product, "Product fetched successfully.", true, null));
+                return Ok(new ApiResponse<ProductResponse>(product, "Product fetched successfully.", true, null));
             }
             catch (NotFoundException ex)
             {
@@ -57,14 +58,14 @@ namespace PreorderPlatform.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateProduct(ProductCreateViewModel model)
+        public async Task<IActionResult> CreateProduct(ProductCreateRequest model)
         {
             try
             {
                 var product = await _productService.CreateProductAsync(model);
                 return CreatedAtAction(nameof(GetProductById),
                                        new { id = product.Id },
-                                       new ApiResponse<ProductViewModel>(product, "Product created successfully.", true, null));
+                                       new ApiResponse<ProductResponse>(product, "Product created successfully.", true, null));
             }
             catch (Exception ex)
             {
@@ -74,7 +75,7 @@ namespace PreorderPlatform.API.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateProduct(ProductUpdateViewModel model)
+        public async Task<IActionResult> UpdateProduct(ProductUpdateRequest model)
         {
             try
             {

@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PreorderPlatform.Service.ViewModels.Business
+namespace PreorderPlatform.Service.ViewModels.Business.Request
 {
-    public class BusinessCreateViewModel
+    public class BusinessUpdateRequest
     {
+        public int Id { get; set; }
         public string? Name { get; set; }
         public string? Description { get; set; }
         public string? Phone { get; set; }

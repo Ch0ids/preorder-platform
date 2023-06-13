@@ -1,13 +1,14 @@
 ﻿using AutoMapper;
 using PreorderPlatform.Entity.Entities;
 using PreorderPlatform.Entity.Repositories.CampaignDetailRepositories;
-using PreorderPlatform.Service.ViewModels.CampaignDetail;
 using PreorderPlatform.Service.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PreorderPlatform.Service.ViewModels.CampaignPrice.Request;
+using PreorderPlatform.Service.ViewModels.CampaignPrice.Response;
 
 namespace PreorderPlatform.Service.Services.CampaignDetailServices
 {
@@ -22,12 +23,12 @@ namespace PreorderPlatform.Service.Services.CampaignDetailServices
             _mapper = mapper;
         }
 
-        public async Task<List<CampaignDetailViewModel>> GetCampaignDetailsAsync()
+        public async Task<List<CampaignPriceResponse>> GetCampaignDetailsAsync()
         {
             try
             {
                 var campaignDetails = await _campaignDetailRepository.GetAllAsync();
-                return _mapper.Map<List<CampaignDetailViewModel>>(campaignDetails);
+                return _mapper.Map<List<CampaignPriceResponse>>(campaignDetails);
             }
             catch (Exception ex)
             {
@@ -36,12 +37,12 @@ namespace PreorderPlatform.Service.Services.CampaignDetailServices
         }
 
         //GetAllCampainDetailsWithProductAsync
-        public async Task<List<CampaignDetailViewModel>> GetAllCampainDetailsWithProductAsync()
+        public async Task<List<CampaignPriceResponse>> GetAllCampainDetailsWithProductAsync()
         {
             try
             {
                 var campaignDetails = await _campaignDetailRepository.GetAllCampainDetailsWithProductAsync();
-                return _mapper.Map<List<CampaignDetailViewModel>>(campaignDetails);
+                return _mapper.Map<List<CampaignPriceResponse>>(campaignDetails);
             }
             catch (Exception ex)
             {
@@ -49,7 +50,7 @@ namespace PreorderPlatform.Service.Services.CampaignDetailServices
             }
         }
 
-        public async Task<CampaignDetailViewModel> GetCampaignDetailByIdAsync(int id)
+        public async Task<CampaignPriceResponse> GetCampaignDetailByIdAsync(int id)
         {
             try
             {
@@ -60,7 +61,7 @@ namespace PreorderPlatform.Service.Services.CampaignDetailServices
                     throw new NotFoundException($"Campaign detail with ID {id} was not found.");
                 }
 
-                return _mapper.Map<CampaignDetailViewModel>(campaignDetail);
+                return _mapper.Map<CampaignPriceResponse>(campaignDetail);
             }
             catch (NotFoundException)
             {
@@ -73,13 +74,13 @@ namespace PreorderPlatform.Service.Services.CampaignDetailServices
             }
         }
 
-        public async Task<CampaignDetailViewModel> CreateCampaignDetailAsync(CampaignDetailCreateViewModel model)
+        public async Task<CampaignPriceResponse> CreateCampaignDetailAsync(CampaignPriceCreateRequest model)
         {
             try
             {
                 var campaignDetail = _mapper.Map<CampaignDetail>(model);
                 await _campaignDetailRepository.CreateAsync(campaignDetail);
-                return _mapper.Map<CampaignDetailViewModel>(campaignDetail);
+                return _mapper.Map<CampaignPriceResponse>(campaignDetail);
             }
             catch (Exception ex)
             {
@@ -87,7 +88,7 @@ namespace PreorderPlatform.Service.Services.CampaignDetailServices
             }
         }
 
-        public async Task UpdateCampaignDetailAsync(CampaignDetailUpdateViewModel model)
+        public async Task UpdateCampaignDetailAsync(CampaignPriceUpdateRequest model)
         {
             try
             {

@@ -1,13 +1,14 @@
 ﻿using AutoMapper;
 using PreorderPlatform.Entity.Entities;
 using PreorderPlatform.Entity.Repositories.BusinessRepositories;
-using PreorderPlatform.Service.ViewModels.Business;
 using PreorderPlatform.Service.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PreorderPlatform.Service.ViewModels.Business.Request;
+using PreorderPlatform.Service.ViewModels.Business.Response;
 
 namespace PreorderPlatform.Service.Services.BusinessServices
 {
@@ -22,12 +23,12 @@ namespace PreorderPlatform.Service.Services.BusinessServices
             _mapper = mapper;
         }
 
-        public async Task<List<BusinessViewModel>> GetBusinessesAsync()
+        public async Task<List<BusinessResponse>> GetBusinessesAsync()
         {
             try
             {
                 var businesses = await _businessRepository.GetAllAsync();
-                return _mapper.Map<List<BusinessViewModel>>(businesses);
+                return _mapper.Map<List<BusinessResponse>>(businesses);
             }
             catch (Exception ex)
             {
@@ -35,7 +36,7 @@ namespace PreorderPlatform.Service.Services.BusinessServices
             }
         }
 
-        public async Task<BusinessViewModel> GetBusinessByIdAsync(int id)
+        public async Task<BusinessResponse> GetBusinessByIdAsync(int id)
         {
             try
             {
@@ -46,7 +47,7 @@ namespace PreorderPlatform.Service.Services.BusinessServices
                     throw new NotFoundException($"Business with ID {id} was not found.");
                 }
 
-                return _mapper.Map<BusinessViewModel>(business);
+                return _mapper.Map<BusinessResponse>(business);
             }
             catch (NotFoundException)
             {
@@ -59,13 +60,13 @@ namespace PreorderPlatform.Service.Services.BusinessServices
             }
         }
 
-        public async Task<BusinessViewModel> CreateBusinessAsync(BusinessCreateViewModel model)
+        public async Task<BusinessResponse> CreateBusinessAsync(BusinessCreateRequest model)
         {
             try
             {
                 var business = _mapper.Map<Business>(model);
                 await _businessRepository.CreateAsync(business);
-                return _mapper.Map<BusinessViewModel>(business);
+                return _mapper.Map<BusinessResponse>(business);
             }
             catch (Exception ex)
             {
@@ -73,7 +74,7 @@ namespace PreorderPlatform.Service.Services.BusinessServices
             }
         }
 
-        public async Task UpdateBusinessAsync(BusinessUpdateViewModel model)
+        public async Task UpdateBusinessAsync(BusinessUpdateRequest model)
         {
             try
             {

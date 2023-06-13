@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PreorderPlatform.Service.ViewModels.User
+namespace PreorderPlatform.Service.ViewModels.User.Response
 {
-    public class UserViewModel
+    public class UserResponse
     {
         public int Id { get; set; }
         public string? FirstName { get; set; }
@@ -19,7 +19,7 @@ namespace PreorderPlatform.Service.ViewModels.User
         public string? Ward { get; set; }
         public string? District { get; set; }
         public string? Province { get; set; }
-        
+
         public string? RoleName { get; set; }
 
         public string? BusinessName { get; set; }

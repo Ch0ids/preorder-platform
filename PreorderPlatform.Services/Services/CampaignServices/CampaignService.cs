@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using PreorderPlatform.Entity.Entities;
 using PreorderPlatform.Entity.Repositories.CampaignRepositories;
-using PreorderPlatform.Service.ViewModels.Campaign;
 using PreorderPlatform.Service.Exceptions;
 using System;
 using System.Collections.Generic;
@@ -9,6 +8,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PreorderPlatform.Service.Utility.Pagination;
+using PreorderPlatform.Service.ViewModels.Campaign.Response;
+using PreorderPlatform.Service.ViewModels.Campaign.Request;
+using PreorderPlatform.Service.Enum;
+using Microsoft.EntityFrameworkCore;
+using PreorderPlatform.Service.Utility;
 
 namespace PreorderPlatform.Service.Services.CampaignServices
 {
@@ -23,12 +27,12 @@ namespace PreorderPlatform.Service.Services.CampaignServices
             _mapper = mapper;
         }
 
-        public async Task<List<CampaignViewModel>> GetCampaignsAsync()
+        public async Task<List<CampaignResponse>> GetCampaignsAsync()
         {
             try
             {
                 var campaigns = await _campaignRepository.GetAllAsync();
-                return _mapper.Map<List<CampaignViewModel>>(campaigns);
+                return _mapper.Map<List<CampaignResponse>>(campaigns);
             }
             catch (Exception ex)
             {
@@ -37,20 +41,19 @@ namespace PreorderPlatform.Service.Services.CampaignServices
         }
 
         //GetAllCampaignsWithOwnerAndBusinessAndCampaignDetailsAsync
-        public async Task<List<CampaignViewModel>> GetAllCampaignsWithOwnerAndBusinessAndCampaignDetailsAsync(PaginationParam paginationModel)
+        public async Task<List<CampaignResponse>> GetAllCampaignsWithOwnerAndBusinessAndCampaignDetailsAsync()
         {
             try
             {
                 var campaigns = await _campaignRepository.GetAllCampaignsWithOwnerAndBusinessAndCampaignDetailsAsync();
-                campaigns = campaigns.GetWithPaging(paginationModel.Page, paginationModel.PageSize).AsQueryable();
-                return _mapper.Map<List<CampaignViewModel>>(campaigns);
+                return _mapper.Map<List<CampaignResponse>>(campaigns);
             }
             catch (Exception ex)
             {
                 throw new ServiceException("An error occurred while fetching campaigns.", ex);
             }
         }
-        public async Task<CampaignViewModel> GetCampaignByIdAsync(int id)
+        public async Task<CampaignResponse> GetCampaignByIdAsync(int id)
         {
             try
             {
@@ -61,7 +64,7 @@ namespace PreorderPlatform.Service.Services.CampaignServices
                     throw new NotFoundException($"Campaign with ID {id} was not found.");
                 }
 
-                return _mapper.Map<CampaignViewModel>(campaign);
+                return _mapper.Map<CampaignResponse>(campaign);
             }
             catch (NotFoundException)
             {
@@ -74,13 +77,13 @@ namespace PreorderPlatform.Service.Services.CampaignServices
             }
         }
 
-        public async Task<CampaignViewModel> CreateCampaignAsync(CampaignCreateViewModel model)
+        public async Task<CampaignResponse> CreateCampaignAsync(CampaignCreateRequest model)
         {
             try
             {
                 var campaign = _mapper.Map<Campaign>(model);
                 await _campaignRepository.CreateAsync(campaign);
-                return _mapper.Map<CampaignViewModel>(campaign);
+                return _mapper.Map<CampaignResponse>(campaign);
             }
             catch (Exception ex)
             {
@@ -88,7 +91,7 @@ namespace PreorderPlatform.Service.Services.CampaignServices
             }
         }
 
-        public async Task UpdateCampaignAsync(CampaignUpdateViewModel model)
+        public async Task UpdateCampaignAsync(CampaignUpdateRequest model)
         {
             try
             {
@@ -112,6 +115,26 @@ namespace PreorderPlatform.Service.Services.CampaignServices
             catch (Exception ex)
             {
                 throw new ServiceException($"An error occurred while deleting campaign with ID {id}.", ex);
+            }
+        }
+
+        public IList<CampaignResponse> Get(PaginationParam<CampaignEnum.CampaignSort> paginationModel, CampaignSearchRequest filterModel)
+        {
+            try
+            {
+                var query = _campaignRepository.Table
+                    .GetWithSearch(filterModel) //theo thứ tự search
+                    .GetWithSorting(paginationModel.SortKey.ToString(), paginationModel.SortOrder) //sort
+                    .GetWithPaging(paginationModel.Page, paginationModel.PageSize)  // phân trang
+                    .AsQueryable();
+
+                var result = _mapper.ProjectTo<CampaignResponse>(query);
+
+                return result.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new ServiceException("An error occurred while fetching campaigns.", ex);
             }
         }
     }

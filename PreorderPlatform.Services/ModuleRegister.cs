@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using AutoMapper;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PreorderPlatform.Entity;
 using PreorderPlatform.Entity.Repositories;
@@ -16,6 +17,7 @@ using PreorderPlatform.Service.Services.ProductServices;
 using PreorderPlatform.Service.Services.RoleServices;
 
 using PreorderPlatform.Service.Services.UserServices;
+using PreorderPlatform.Service.ViewModels.AutoMapperProfile;
 
 namespace PreorderPlatform.Service
 {
@@ -25,7 +27,8 @@ namespace PreorderPlatform.Service
         {
             services.RegisterRepository();
             services.RegisterService();
-            services.RegisterData(configuration);
+            services.ConfigureDBContext(configuration);
+            services.ConfigAutoMapper();
         }
 
         public static void RegisterService(this IServiceCollection services)
@@ -44,6 +47,27 @@ namespace PreorderPlatform.Service
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IJwtService, JwtService>();
 
+        }
+
+        public static void ConfigAutoMapper(this IServiceCollection services)
+        {
+            var mappingConfig = new MapperConfiguration(mc =>
+            {
+                mc.ConfigBusinessMapper();
+                mc.ConfigBusinessPaymentCredentialMapper();
+                mc.ConfigCampaignDetailMapper();
+                mc.ConfigCampaignMapper();
+                mc.ConfigCategoryMapper();
+                mc.ConfigOrderItemMapper();
+                mc.ConfigOrderMapper();
+                mc.ConfigPaymentMapper();
+                mc.ConfigProductMapper();
+                mc.ConfigRoleMapper();
+                mc.ConfigUserMapper();
+            });
+
+            IMapper mapper = mappingConfig.CreateMapper();
+            services.AddSingleton(mapper);
         }
     }
 }
