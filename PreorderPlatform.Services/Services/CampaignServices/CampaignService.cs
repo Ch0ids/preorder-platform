@@ -122,8 +122,12 @@ namespace PreorderPlatform.Service.Services.CampaignServices
         {
             try
             {
+                var dateInRange = filterModel.DateInRange;
+                filterModel.DateInRange = null;
+
                 var query = _campaignRepository.Table
                     .GetWithSearch(filterModel) //theo thứ tự search
+                    .FilterByDateInRange(dateInRange, e => e.StartAt, e => e.EndAt) // Filter by date range
                     .GetWithSorting(paginationModel.SortKey.ToString(), paginationModel.SortOrder) //sort
                     .GetWithPaging(paginationModel.Page, paginationModel.PageSize)  // phân trang
                     .AsQueryable();
@@ -134,6 +138,7 @@ namespace PreorderPlatform.Service.Services.CampaignServices
             }
             catch (Exception ex)
             {
+                Console.WriteLine("Exception " + ex.Message);
                 throw new ServiceException("An error occurred while fetching campaigns.", ex);
             }
         }

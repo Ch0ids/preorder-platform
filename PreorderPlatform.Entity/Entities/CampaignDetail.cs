@@ -12,8 +12,9 @@ namespace PreorderPlatform.Entity.Entities
 
         public int Id { get; set; }
         public int? ProductId { get; set; }
-        public int? MinOrder { get; set; }
-        public int? MaxOrder { get; set; }
+        public int Phase { get; set; }
+        public int AllowedQuantity { get; set; }
+        public int TotalOrdered { get; set; }
         public int? CampaignId { get; set; }
         public decimal? Price { get; set; }
 

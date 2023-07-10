@@ -1,4 +1,5 @@
-﻿using AutoMapper.Internal;
+﻿using System;
+using System.Linq;
 using System.Linq.Expressions;
 
 namespace PreorderPlatform.Service.Utility
@@ -10,111 +11,107 @@ namespace PreorderPlatform.Service.Utility
             foreach (var prop in searchModel.GetType().GetProperties())
             {
                 var value = prop.GetValue(searchModel, null);
-                if (value is string)
+
+                if (value == null) continue;
+
+                var entityProperty = typeof(TEntity).GetProperty(prop.Name);
+
+                if (entityProperty == null) continue;
+
+                // Build expression tree
+                //--entity
+                var param = Expression.Parameter(typeof(TEntity), "entity");
+                //--entity.{PropertyName}
+                var entityProp = Expression.Property(param, entityProperty.Name);
+
+                Expression body;
+
+                // Filter by string
+                if (value is string stringValue && stringValue.Length > 0)
                 {
-                    if ((string)value! is { Length: > 0 })
+                    //--searchValue
+                    var searchValue = Expression.Constant(value);
+                    //--entity.{PropertyName}.Contains(searchValue)
+                    body = Expression.Call(entityProp, nameof(string.Contains), null, searchValue);
+                }
+                // Filter by int, Guid, DateTime, byte, and bool
+                else if (value is int || value is Guid || value is DateTime || value is byte || value is bool)
+                {
+                    // Check if the property type is nullable and convert the search value accordingly
+                    if (Nullable.GetUnderlyingType(entityProp.Type) != null)
                     {
-                        // Build expression tree
-                        //--entity
-                        var param = Expression.Parameter(typeof(TEntity), "entity");
-                        //--entity.{PropertyName}
-                        var entityProp = Expression.Property(param, prop.Name);
-                        //--searchValue
+                        var searchValue = Expression.Constant(value, entityProp.Type);
+                        //--entity.{PropertyName}.Equals(searchValue)
+                        body = Expression.Equal(entityProp, searchValue);
+                    }
+                    else
+                    {
                         var searchValue = Expression.Constant(value);
-                        //--entity.{PropertyName}.Contains(searchValue)
-                        var body = Expression.Call(entityProp, "Contains", null, searchValue);
-                        //--entity => entity.{PropertyName}.Contains(searchValue)
-                        var exp = Expression.Lambda<Func<TEntity, bool>>(body, param);
-                        //entity.{PropertyName}.Contains(searchValue)
-                        query = query.Where(exp);
+                        //--entity.{PropertyName}.Equals(searchValue)
+                        body = Expression.Equal(entityProp, searchValue);
                     }
                 }
-
-                if (value != null && value is int)
+                else
                 {
-                    // Build expression tree
-                    //--entity
-                    var param = Expression.Parameter(typeof(TEntity), "entity");
-                    //--entity.{PropertyName}
-
-                    var entityProp = Expression.Property(param, prop.Name);
-                    var convert = Expression.Convert(entityProp, typeof(int));
-                    //--searchValue
-                    var searchValue = Expression.Constant(value);
-                    var searchValueNonNull = Expression.Convert(searchValue, typeof(int));
-
-                    //--entity.{PropertyName}.Contains(searchValue)
-                    var body = Expression.Equal(convert, searchValueNonNull);
-                    //--entity => entity.{PropertyName}.Contains(searchValue)
-                    var exp = Expression.Lambda<Func<TEntity, bool>>(body, param);
-                    //entity.{PropertyName}.Contains(searchValue)
-                    query = query.Where(exp);
+                    continue;
                 }
 
-                if (value != null && value is Guid)
-                {
-                    // Build expression tree
-                    //--entity
-                    var param = Expression.Parameter(typeof(TEntity), "entity");
-                    //--entity.{PropertyName}
-
-                    var entityProp = Expression.Property(param, prop.Name);
-                    var convert = Expression.Convert(entityProp, typeof(Guid));
-                    //--searchValue
-                    var searchValue = Expression.Constant(value);
-                    var searchValueNonNull = Expression.Convert(searchValue, typeof(Guid));
-
-                    //--entity.{PropertyName}.Contains(searchValue)
-                    var body = Expression.Equal(convert, searchValueNonNull);
-                    //--entity => entity.{PropertyName}.Contains(searchValue)
-                    var exp = Expression.Lambda<Func<TEntity, bool>>(body, param);
-                    //entity.{PropertyName}.Contains(searchValue)
-                    query = query.Where(exp);
-                }
-
-                if (value != null && value is DateTime)
-                {
-                    // Build expression tree
-                    //--entity
-                    var param = Expression.Parameter(typeof(TEntity), "entity");
-                    //--entity.{PropertyName}
-
-                    var entityProp = Expression.Property(param, prop.Name);
-                    var convert = Expression.Convert(entityProp, typeof(DateTime));
-                    //--searchValue
-                    var searchValue = Expression.Constant(value);
-                    var searchValueNonNull = Expression.Convert(searchValue, typeof(DateTime));
-
-                    //--entity.{PropertyName}.Contains(searchValue)
-                    var body = Expression.Equal(convert, searchValueNonNull);
-                    //--entity => entity.{PropertyName}.Contains(searchValue)
-                    var exp = Expression.Lambda<Func<TEntity, bool>>(body, param);
-                    //entity.{PropertyName}.Contains(searchValue)
-                    query = query.Where(exp);
-                }
-
-                if (value != null && value is byte)
-                {
-                    // Build expression tree
-                    //--entity
-                    var param = Expression.Parameter(typeof(TEntity), "entity");
-                    //--entity.{PropertyName}
-                    var entityProp = Expression.Property(param, prop.Name);
-                    //--searchValue
-                    var searchValue = Expression.Constant((byte?)value);
-
-                    var searchValueE = Expression.Convert(searchValue, typeof(byte?));
-
-                    //--entity.{PropertyName}.Contains(searchValue)
-                    var body = Expression.Equal(entityProp, value.GetType().IsNullableType() ? searchValueE : searchValue);
-                    //--entity => entity.{PropertyName}.Contains(searchValue)
-                    var exp = Expression.Lambda<Func<TEntity, bool>>(body, param);
-                    //entity.{PropertyName}.Contains(searchValue)
-                    query = query.Where(exp);
-                }
+                //--entity => entity.{PropertyName}.(Contains/Equals)(searchValue)
+                var exp = Expression.Lambda<Func<TEntity, bool>>(body, param);
+                //entity.{PropertyName}.(Contains/Equals)(searchValue)
+                query = query.Where(exp);
             }
 
             return query;
         }
+
+
+        public static IQueryable<TEntity> FilterByDateInRange<TEntity>(
+        this IQueryable<TEntity> query,
+        DateTime? date,
+        Expression<Func<TEntity, DateTime?>> startSelector,
+        Expression<Func<TEntity, DateTime?>> endSelector)
+        {
+            if (date.HasValue)
+            {
+                var entityType = typeof(TEntity);
+                var entityParameter = Expression.Parameter(entityType, "e");
+
+                var startSelectorBody = ReplaceParameter(startSelector.Body, startSelector.Parameters[0], entityParameter);
+                var startCondition = Expression.LessThanOrEqual(startSelectorBody, Expression.Constant(date.Value, typeof(DateTime?)));
+
+                var endSelectorBody = ReplaceParameter(endSelector.Body, endSelector.Parameters[0], entityParameter);
+                var endCondition = Expression.GreaterThanOrEqual(endSelectorBody, Expression.Constant(date.Value, typeof(DateTime?)));
+
+                var combinedCondition = Expression.AndAlso(startCondition, endCondition);
+                var lambda = Expression.Lambda<Func<TEntity, bool>>(combinedCondition, entityParameter);
+
+                query = query.Where(lambda);
+            }
+
+            return query;
+        }
+
+        private static Expression ReplaceParameter(Expression expression, ParameterExpression oldParameter, ParameterExpression newParameter)
+        {
+            return new ParameterReplacer(oldParameter, newParameter).Visit(expression);
+        }
+
+        private class ParameterReplacer : ExpressionVisitor
+        {
+            private readonly ParameterExpression _oldParameter;
+            private readonly ParameterExpression _newParameter;
+
+            public ParameterReplacer(ParameterExpression oldParameter, ParameterExpression newParameter)
+            {
+                _oldParameter = oldParameter;
+                _newParameter = newParameter;
+            }
+
+            protected override Expression VisitParameter(ParameterExpression node)
+            {
+                return node == _oldParameter ? _newParameter : base.VisitParameter(node);
+            }
+        }
     }
-}
+    }

@@ -9,9 +9,10 @@ namespace PreorderPlatform.Service.ViewModels.Campaign.Request
     public class CampaignSearchRequest
     {
         public string? Name { get; set; }
-        public DateTime? StartAt { get; set; }
-        public DateTime? EndAt { get; set; }
+        public DateTime? DateInRange { get; set; }
         public bool? Status { get; set; }
-        public int? BusinessName { get; set; }
+        public int? OwnerId { get; set; }
+        public int? BusinessId { get; set; }
+
     }
 }

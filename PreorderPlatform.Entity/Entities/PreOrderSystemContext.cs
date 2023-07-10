@@ -176,9 +176,11 @@ namespace PreorderPlatform.Entity.Entities
 
                 entity.Property(e => e.CampaignId).HasColumnName("campaign_id");
 
-                entity.Property(e => e.MaxOrder).HasColumnName("max_order");
+                entity.Property(e => e.Phase).HasColumnName("phase");
 
-                entity.Property(e => e.MinOrder).HasColumnName("min_order");
+                entity.Property(e => e.AllowedQuantity).HasColumnName("allowed_quantity");
+
+                entity.Property(e => e.TotalOrdered).HasColumnName("total_ordered");
 
                 entity.Property(e => e.Price)
                     .HasColumnType("numeric(18, 0)")
