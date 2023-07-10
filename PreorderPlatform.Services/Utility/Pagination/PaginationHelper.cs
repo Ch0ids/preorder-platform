@@ -8,10 +8,14 @@ namespace PreorderPlatform.Service.Utility.Pagination
 {
     public static class PaginationHelper
     {
-        public static IEnumerable<TObject> GetWithPaging<TObject>(this IEnumerable<TObject> source, int page, int pageSize, int safePageSizeLimit = PaginationConstant.MaxPageSize)
-        where TObject : class
+        public static IQueryable<TObject> GetWithPaging<TObject>(
+            this IQueryable<TObject> source,
+            int page,
+            int pageSize,
+            int safePageSizeLimit = PaginationConstant.MaxPageSize)
+            where TObject : class
         {
-            //nhập số trang quá lớn
+            // Check if the page size is over the safe limit
             if (pageSize > safePageSizeLimit)
             {
                 throw new Exception("Input page size is over safe limitation.");
@@ -19,7 +23,7 @@ namespace PreorderPlatform.Service.Utility.Pagination
 
             if (source == null)
             {
-                return Enumerable.Empty<TObject>();
+                return Enumerable.Empty<TObject>().AsQueryable();
             }
 
             pageSize = pageSize < 1 ? 1 : pageSize;

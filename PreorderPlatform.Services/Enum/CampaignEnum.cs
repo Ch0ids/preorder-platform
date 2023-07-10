@@ -5,9 +5,9 @@
         //Cấu hình các thuộc tính để sort
         public enum CampaignSort
         {
+            EndAt,
             Name,
             StartAt,
-            EndAt,
             ExpectedShippingDate,
             CreateAt,
             ModifiedAt,

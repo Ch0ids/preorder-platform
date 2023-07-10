@@ -118,23 +118,26 @@ namespace PreorderPlatform.Service.Services.CampaignServices
             }
         }
 
-        public IList<CampaignResponse> Get(PaginationParam<CampaignEnum.CampaignSort> paginationModel, CampaignSearchRequest filterModel)
+        public async Task<IList<CampaignResponse>> GetAsync(PaginationParam<CampaignEnum.CampaignSort> paginationModel, CampaignSearchRequest filterModel)
         {
             try
             {
                 var dateInRange = filterModel.DateInRange;
                 filterModel.DateInRange = null;
 
-                var query = _campaignRepository.Table
-                    .GetWithSearch(filterModel) //theo thứ tự search
-                    .FilterByDateInRange(dateInRange, e => e.StartAt, e => e.EndAt) // Filter by date range
-                    .GetWithSorting(paginationModel.SortKey.ToString(), paginationModel.SortOrder) //sort
-                    .GetWithPaging(paginationModel.Page, paginationModel.PageSize)  // phân trang
-                    .AsQueryable();
+                var query = _campaignRepository.Table;
 
-                var result = _mapper.ProjectTo<CampaignResponse>(query);
+                query = query.GetWithSearch(filterModel); //search
+                query = query.FilterByDateInRange(dateInRange, e => e.StartAt, e => e.EndAt); // Filter by date range
+                query = query.GetWithSorting(paginationModel.SortKey.ToString(), paginationModel.SortOrder) //sort
+                            .GetWithPaging(paginationModel.Page, paginationModel.PageSize);  // pagination
 
-                return result.ToList();
+                var campaignList = await query.ToListAsync(); // Call ToListAsync here
+
+                // Map the campaignList to a list of CampaignResponse objects
+                var result = _mapper.Map<List<CampaignResponse>>(campaignList);
+
+                return result;
             }
             catch (Exception ex)
             {
@@ -142,5 +145,7 @@ namespace PreorderPlatform.Service.Services.CampaignServices
                 throw new ServiceException("An error occurred while fetching campaigns.", ex);
             }
         }
+
+
     }
 }

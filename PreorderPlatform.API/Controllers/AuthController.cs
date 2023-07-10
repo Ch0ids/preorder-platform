@@ -39,21 +39,21 @@ namespace PreorderPlatform.API.Controllers
         }
 
         [HttpGet("admin-only")]
-        [CustomAuthorize(Roles = "Admin")]
+        [CustomAuthorize(Roles = "ADMIN")]
         public IActionResult AdminOnly()
         {
             return Ok("This endpoint is accessible only to users with the Admin role.");
         }
 
-        [HttpGet("user-only")]
-        [CustomAuthorize(Roles = "User")]
+        [HttpGet("bussiness-owner-only")]
+        [CustomAuthorize(Roles = "BUSSINESS_OWNER")]
         public IActionResult UserOnly()
         {
             return Ok("This endpoint is accessible only to users with the User role.");
         }
 
-        [HttpGet("test-admin")]
-        [CustomAuthorize(Roles = "Admin,Test")]
+        [HttpGet("bussiness-staff-only")]
+        [CustomAuthorize(Roles = "BUSSINESS_STAFF")]
         public IActionResult TestOnly()
         {
             return Ok("This endpoint is accessible only to users with the Test and Admin role.");
