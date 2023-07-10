@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using PreorderPlatform.Entity.Entities;
+using PreorderPlatform.Entity.Models;
 using PreorderPlatform.Service.ViewModels.Business.Request;
 using PreorderPlatform.Service.ViewModels.Business.Response;
 using System;
@@ -14,9 +14,9 @@ namespace PreorderPlatform.Service.ViewModels.AutoMapperProfile
     {
         public static void ConfigBusinessMapper(this IMapperConfigurationExpression configuration)
         {
-            configuration.CreateMap<PreorderPlatform.Entity.Entities.Business, BusinessCreateRequest>().ReverseMap();
-            configuration.CreateMap<PreorderPlatform.Entity.Entities.Business, BusinessUpdateRequest>().ReverseMap();
-            configuration.CreateMap<PreorderPlatform.Entity.Entities.Business, BusinessResponse>().ReverseMap();
+            configuration.CreateMap<PreorderPlatform.Entity.Models.Business, BusinessCreateRequest>().ReverseMap();
+            configuration.CreateMap<PreorderPlatform.Entity.Models.Business, BusinessUpdateRequest>().ReverseMap();
+            configuration.CreateMap<PreorderPlatform.Entity.Models.Business, BusinessResponse>().ReverseMap();
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using PreorderPlatform.Entity.Entities;
+﻿using PreorderPlatform.Entity.Models;
 
 namespace PreorderPlatform.Entity.Repositories.CampaignRepositories
 {
@@ -12,10 +12,9 @@ namespace PreorderPlatform.Entity.Repositories.CampaignRepositories
         // Add any additional methods specific to CampaignRepository here...
         public async Task<IEnumerable<Campaign>> GetAllCampaignsWithOwnerAndBusinessAndCampaignDetailsAsync()
         {
-            return await GetAllWithIncludeAsync(u => true, u => u.Business, u => u.Owner, u => u.CampaignDetails);
+            return await GetAllWithIncludeAsync(u => true, u => u.Product, u => u.Business, u => u.Owner, u => u.CampaignDetails);
 
            // return await GetAllWithIncludeLoadRelatedEntitiesAsync(u => true);
-
         }
     }
 }

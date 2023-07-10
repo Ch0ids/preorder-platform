@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using PreorderPlatform.Entity.Entities;
+using PreorderPlatform.Entity.Models;
 using PreorderPlatform.Entity.Repositories.BusinessPaymentCredentialRepositories;
 using PreorderPlatform.Entity.Repositories.BusinessRepositories;
 using PreorderPlatform.Entity.Repositories.CampaignDetailRepositories;

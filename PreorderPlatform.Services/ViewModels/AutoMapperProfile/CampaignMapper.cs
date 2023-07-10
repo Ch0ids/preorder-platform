@@ -15,10 +15,10 @@ namespace PreorderPlatform.Service.ViewModels.AutoMapperProfile
     {
         public static void ConfigCampaignMapper(this IMapperConfigurationExpression configuration)
         {
-            configuration.CreateMap<PreorderPlatform.Entity.Entities.Campaign, CampaignCreateRequest>().ReverseMap();
-            configuration.CreateMap<PreorderPlatform.Entity.Entities.Campaign, CampaignUpdateRequest>().ReverseMap();
-            configuration.CreateMap<PreorderPlatform.Entity.Entities.Campaign, CampaignResponse>().ReverseMap();
-            configuration.CreateMap<PreorderPlatform.Entity.Entities.Campaign, CampaignDetailResponse>().ReverseMap();
+            configuration.CreateMap<PreorderPlatform.Entity.Models.Campaign, CampaignCreateRequest>().ReverseMap();
+            configuration.CreateMap<PreorderPlatform.Entity.Models.Campaign, CampaignUpdateRequest>().ReverseMap();
+            configuration.CreateMap<PreorderPlatform.Entity.Models.Campaign, CampaignResponse>().ReverseMap();
+            configuration.CreateMap<PreorderPlatform.Entity.Models.Campaign, CampaignDetailResponse>().ReverseMap();
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using PreorderPlatform.Entity.Entities;
+using PreorderPlatform.Entity.Models;
 using PreorderPlatform.Service.Services.AuthService;
 using PreorderPlatform.Service.Services.UserServices;
 using System.Drawing.Text;

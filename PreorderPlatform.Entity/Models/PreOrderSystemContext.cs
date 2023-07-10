@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace PreorderPlatform.Entity.Entities
+namespace PreorderPlatform.Entity.Models
 {
     public partial class PreOrderSystemContext : DbContext
     {
@@ -30,13 +30,11 @@ namespace PreorderPlatform.Entity.Entities
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            /*
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=CHOIDS;Database=PreOrderSystem;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=(local);Uid=sa;Pwd=123;Database=PreOrderSystem");
             }
-            */
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -66,7 +64,7 @@ namespace PreorderPlatform.Entity.Entities
                 entity.HasOne(d => d.Owner)
                     .WithMany(p => p.Businesses)
                     .HasForeignKey(d => d.OwnerId)
-                    .HasConstraintName("FK__Business__owner___3C69FB99");
+                    .HasConstraintName("FK__Business__owner___29572725");
             });
 
             modelBuilder.Entity<BusinessPaymentCredential>(entity =>
@@ -93,6 +91,8 @@ namespace PreorderPlatform.Entity.Entities
                     .HasColumnType("datetime")
                     .HasColumnName("create_at");
 
+                entity.Property(e => e.IsMain).HasColumnName("is_main");
+
                 entity.Property(e => e.IsMomoActive).HasColumnName("is_momo_active");
 
                 entity.Property(e => e.MomoAccessToken)
@@ -116,7 +116,7 @@ namespace PreorderPlatform.Entity.Entities
                 entity.HasOne(d => d.Business)
                     .WithMany(p => p.BusinessPaymentCredentials)
                     .HasForeignKey(d => d.BusinessId)
-                    .HasConstraintName("FK__BusinessP__busin__403A8C7D");
+                    .HasConstraintName("FK__BusinessP__busin__2D27B809");
             });
 
             modelBuilder.Entity<Campaign>(entity =>
@@ -151,6 +151,8 @@ namespace PreorderPlatform.Entity.Entities
 
                 entity.Property(e => e.OwnerId).HasColumnName("owner_id");
 
+                entity.Property(e => e.ProductId).HasColumnName("product_id");
+
                 entity.Property(e => e.StartAt)
                     .HasColumnType("datetime")
                     .HasColumnName("start_at");
@@ -160,12 +162,17 @@ namespace PreorderPlatform.Entity.Entities
                 entity.HasOne(d => d.Business)
                     .WithMany(p => p.Campaigns)
                     .HasForeignKey(d => d.BusinessId)
-                    .HasConstraintName("FK__Campaign__busine__440B1D61");
+                    .HasConstraintName("FK__Campaign__busine__37A5467C");
 
                 entity.HasOne(d => d.Owner)
                     .WithMany(p => p.Campaigns)
                     .HasForeignKey(d => d.OwnerId)
-                    .HasConstraintName("FK__Campaign__owner___4316F928");
+                    .HasConstraintName("FK__Campaign__owner___36B12243");
+
+                entity.HasOne(d => d.Product)
+                    .WithMany(p => p.Campaigns)
+                    .HasForeignKey(d => d.ProductId)
+                    .HasConstraintName("FK__Campaign__produc__35BCFE0A");
             });
 
             modelBuilder.Entity<CampaignDetail>(entity =>
@@ -174,29 +181,22 @@ namespace PreorderPlatform.Entity.Entities
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
+                entity.Property(e => e.AllowedQuantity).HasColumnName("allowed_quantity");
+
                 entity.Property(e => e.CampaignId).HasColumnName("campaign_id");
 
                 entity.Property(e => e.Phase).HasColumnName("phase");
-
-                entity.Property(e => e.AllowedQuantity).HasColumnName("allowed_quantity");
-
-                entity.Property(e => e.TotalOrdered).HasColumnName("total_ordered");
 
                 entity.Property(e => e.Price)
                     .HasColumnType("numeric(18, 0)")
                     .HasColumnName("price");
 
-                entity.Property(e => e.ProductId).HasColumnName("product_id");
+                entity.Property(e => e.TotalOrdered).HasColumnName("total_ordered");
 
                 entity.HasOne(d => d.Campaign)
                     .WithMany(p => p.CampaignDetails)
                     .HasForeignKey(d => d.CampaignId)
-                    .HasConstraintName("FK__CampaignD__campa__4CA06362");
-
-                entity.HasOne(d => d.Product)
-                    .WithMany(p => p.CampaignDetails)
-                    .HasForeignKey(d => d.ProductId)
-                    .HasConstraintName("FK__CampaignD__produ__4D94879B");
+                    .HasConstraintName("FK__CampaignD__campa__3A81B327");
             });
 
             modelBuilder.Entity<Category>(entity =>
@@ -263,7 +263,7 @@ namespace PreorderPlatform.Entity.Entities
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Orders)
                     .HasForeignKey(d => d.UserId)
-                    .HasConstraintName("FK__Order__user_id__5070F446");
+                    .HasConstraintName("FK__Order__user_id__3D5E1FD2");
             });
 
             modelBuilder.Entity<OrderItem>(entity =>
@@ -285,12 +285,12 @@ namespace PreorderPlatform.Entity.Entities
                 entity.HasOne(d => d.CampaignDetail)
                     .WithMany(p => p.OrderItems)
                     .HasForeignKey(d => d.CampaignDetailId)
-                    .HasConstraintName("FK__OrderItem__campa__5441852A");
+                    .HasConstraintName("FK__OrderItem__campa__412EB0B6");
 
                 entity.HasOne(d => d.Order)
                     .WithMany(p => p.OrderItems)
                     .HasForeignKey(d => d.OrderId)
-                    .HasConstraintName("FK__OrderItem__order__534D60F1");
+                    .HasConstraintName("FK__OrderItem__order__403A8C7D");
             });
 
             modelBuilder.Entity<Payment>(entity =>
@@ -320,12 +320,12 @@ namespace PreorderPlatform.Entity.Entities
                 entity.HasOne(d => d.Order)
                     .WithMany(p => p.Payments)
                     .HasForeignKey(d => d.OrderId)
-                    .HasConstraintName("FK__Payment__order_i__5812160E");
+                    .HasConstraintName("FK__Payment__order_i__44FF419A");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Payments)
                     .HasForeignKey(d => d.UserId)
-                    .HasConstraintName("FK__Payment__user_id__571DF1D5");
+                    .HasConstraintName("FK__Payment__user_id__440B1D61");
             });
 
             modelBuilder.Entity<Product>(entity =>
@@ -355,12 +355,12 @@ namespace PreorderPlatform.Entity.Entities
                 entity.HasOne(d => d.Business)
                     .WithMany(p => p.Products)
                     .HasForeignKey(d => d.BusinessId)
-                    .HasConstraintName("FK__Product__busines__49C3F6B7");
+                    .HasConstraintName("FK__Product__busines__32E0915F");
 
                 entity.HasOne(d => d.Category)
                     .WithMany(p => p.Products)
                     .HasForeignKey(d => d.CategoryId)
-                    .HasConstraintName("FK__Product__categor__48CFD27E");
+                    .HasConstraintName("FK__Product__categor__31EC6D26");
             });
 
             modelBuilder.Entity<Role>(entity =>
@@ -411,12 +411,12 @@ namespace PreorderPlatform.Entity.Entities
                 entity.HasOne(d => d.Business)
                     .WithMany(p => p.Users)
                     .HasForeignKey(d => d.BusinessId)
-                    .HasConstraintName("FK__User__business_i__3D5E1FD2");
+                    .HasConstraintName("FK__User__business_i__2A4B4B5E");
 
                 entity.HasOne(d => d.Role)
                     .WithMany(p => p.Users)
                     .HasForeignKey(d => d.RoleId)
-                    .HasConstraintName("FK__User__role_id__398D8EEE");
+                    .HasConstraintName("FK__User__role_id__267ABA7A");
             });
 
             OnModelCreatingPartial(modelBuilder);

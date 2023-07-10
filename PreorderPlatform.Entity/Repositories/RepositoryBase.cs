@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PreorderPlatform.Entity.Entities;
+using PreorderPlatform.Entity.Models;
 using PreorderPlatform.Entity.Extensions;
 using System;
 using System.Collections.Generic;

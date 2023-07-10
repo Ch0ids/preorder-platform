@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using PreorderPlatform.Entity.Entities;
+using PreorderPlatform.Entity.Models;
 using PreorderPlatform.Entity.Repositories.RoleRepositories;
 using PreorderPlatform.Service.Services.RoleServices;
 using PreorderPlatform.Service.ViewModels.Role;

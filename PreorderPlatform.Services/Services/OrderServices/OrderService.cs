@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using PreorderPlatform.Entity.Entities;
+using PreorderPlatform.Entity.Models;
 using PreorderPlatform.Entity.Repositories.OrderRepositories;
 using PreorderPlatform.Service.Services.OrderServices;
 using PreorderPlatform.Service.ViewModels.Order;

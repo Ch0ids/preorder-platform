@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
-using PreorderPlatform.Entity.Entities;
+using PreorderPlatform.Entity.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

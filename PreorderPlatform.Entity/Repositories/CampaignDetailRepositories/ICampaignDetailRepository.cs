@@ -1,4 +1,4 @@
-﻿using PreorderPlatform.Entity.Entities;
+﻿using PreorderPlatform.Entity.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +9,6 @@ namespace PreorderPlatform.Entity.Repositories.CampaignDetailRepositories
 {
     public interface ICampaignDetailRepository : IRepositoryBase<CampaignDetail>
     {
-        Task<IEnumerable<CampaignDetail>> GetAllCampainDetailsWithProductAsync();
+        Task<IEnumerable<CampaignDetail>> GetAllCampainDetailsAsync();
     }
 }

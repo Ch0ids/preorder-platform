@@ -14,9 +14,9 @@ namespace PreorderPlatform.Service.ViewModels.AutoMapperProfile
     {
         public static void ConfigOrderMapper(this IMapperConfigurationExpression configuration)
         {
-            configuration.CreateMap<PreorderPlatform.Entity.Entities.Order, OrderCreateViewModel>().ReverseMap();
-            configuration.CreateMap<PreorderPlatform.Entity.Entities.Order, OrderUpdateViewModel>().ReverseMap();
-            configuration.CreateMap<PreorderPlatform.Entity.Entities.Order, OrderViewModel>().ReverseMap();
+            configuration.CreateMap<PreorderPlatform.Entity.Models.Order, OrderCreateViewModel>().ReverseMap();
+            configuration.CreateMap<PreorderPlatform.Entity.Models.Order, OrderUpdateViewModel>().ReverseMap();
+            configuration.CreateMap<PreorderPlatform.Entity.Models.Order, OrderViewModel>().ReverseMap();
         }
     }
 }

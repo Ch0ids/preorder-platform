@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using PreorderPlatform.Entity.Entities;
+using PreorderPlatform.Entity.Models;
 using PreorderPlatform.Service.Services.AuthService;
 using PreorderPlatform.Service.Services.UserServices;
 using PreorderPlatform.Service.ViewModels.ApiResponse;

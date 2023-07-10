@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using PreorderPlatform.Entity.Entities;
+using PreorderPlatform.Entity.Models;
 using AutoMapper;
 using PreorderPlatform.Service.ViewModels.User;
 using PreorderPlatform.Entity.Repositories.UserRepository;

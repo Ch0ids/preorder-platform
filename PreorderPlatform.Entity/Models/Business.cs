@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace PreorderPlatform.Entity.Entities
+namespace PreorderPlatform.Entity.Models
 {
     public partial class Business
     {

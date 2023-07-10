@@ -28,65 +28,65 @@ namespace PreorderPlatform.Service.ViewModels.AutoMapperProfile
         public ApplicationAutoMapperProfile()
         {
             // User mappings
-            CreateMap<PreorderPlatform.Entity.Entities.User, UserResponse>()
+            CreateMap<PreorderPlatform.Entity.Models.User, UserResponse>()
                 .ForMember(dest => dest.RoleName, opt => opt.MapFrom(src => src.Role.Name))
                 .ForMember(dest => dest.BusinessName, opt => opt.MapFrom(src => src.Business.Name))
                 .ReverseMap();
-            CreateMap<PreorderPlatform.Entity.Entities.User, UserUpdateRequest>().ReverseMap();
-            CreateMap<PreorderPlatform.Entity.Entities.User, UserCreateRequest>().ReverseMap();
+            CreateMap<PreorderPlatform.Entity.Models.User, UserUpdateRequest>().ReverseMap();
+            CreateMap<PreorderPlatform.Entity.Models.User, UserCreateRequest>().ReverseMap();
 
             //Role mappings
-            CreateMap<PreorderPlatform.Entity.Entities.Role, RoleCreateViewModel>().ReverseMap();
-            CreateMap<PreorderPlatform.Entity.Entities.Role, RoleDetailViewModel>().ReverseMap();
+            CreateMap<PreorderPlatform.Entity.Models.Role, RoleCreateViewModel>().ReverseMap();
+            CreateMap<PreorderPlatform.Entity.Models.Role, RoleDetailViewModel>().ReverseMap();
 
             //Category
-            CreateMap<PreorderPlatform.Entity.Entities.Category, CategoryCreateViewModel>().ReverseMap();
-            CreateMap<PreorderPlatform.Entity.Entities.Category, CategoryUpdateViewModel>().ReverseMap();
-            CreateMap<PreorderPlatform.Entity.Entities.Category, CategoryViewModel>().ReverseMap();
+            CreateMap<PreorderPlatform.Entity.Models.Category, CategoryCreateViewModel>().ReverseMap();
+            CreateMap<PreorderPlatform.Entity.Models.Category, CategoryUpdateViewModel>().ReverseMap();
+            CreateMap<PreorderPlatform.Entity.Models.Category, CategoryViewModel>().ReverseMap();
 
             //Product
-            CreateMap<PreorderPlatform.Entity.Entities.Product, ProductCreateRequest>().ReverseMap();
-            CreateMap<PreorderPlatform.Entity.Entities.Product, ProductUpdateRequest>().ReverseMap();
-            CreateMap<PreorderPlatform.Entity.Entities.Product, ProductResponse>()
+            CreateMap<PreorderPlatform.Entity.Models.Product, ProductCreateRequest>().ReverseMap();
+            CreateMap<PreorderPlatform.Entity.Models.Product, ProductUpdateRequest>().ReverseMap();
+            CreateMap<PreorderPlatform.Entity.Models.Product, ProductResponse>()
                                                 .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Category.Name))
                                                 .ReverseMap();
 
             //Business
-            CreateMap<PreorderPlatform.Entity.Entities.Business, BusinessCreateRequest>().ReverseMap();
-            CreateMap<PreorderPlatform.Entity.Entities.Business, BusinessUpdateRequest>().ReverseMap();
-            CreateMap<PreorderPlatform.Entity.Entities.Business, BusinessResponse>().ReverseMap();
+            CreateMap<PreorderPlatform.Entity.Models.Business, BusinessCreateRequest>().ReverseMap();
+            CreateMap<PreorderPlatform.Entity.Models.Business, BusinessUpdateRequest>().ReverseMap();
+            CreateMap<PreorderPlatform.Entity.Models.Business, BusinessResponse>().ReverseMap();
 
             //BussinessPaymentCrential
-            CreateMap<PreorderPlatform.Entity.Entities.BusinessPaymentCredential, BusinessPaymentCredentialCreateViewModel>().ReverseMap();
-            CreateMap<PreorderPlatform.Entity.Entities.BusinessPaymentCredential, BusinessPaymentCredentialUpdateViewModel>().ReverseMap();
-            CreateMap<PreorderPlatform.Entity.Entities.BusinessPaymentCredential, BusinessPaymentCredentialViewModel>().ReverseMap();
+            CreateMap<PreorderPlatform.Entity.Models.BusinessPaymentCredential, BusinessPaymentCredentialCreateViewModel>().ReverseMap();
+            CreateMap<PreorderPlatform.Entity.Models.BusinessPaymentCredential, BusinessPaymentCredentialUpdateViewModel>().ReverseMap();
+            CreateMap<PreorderPlatform.Entity.Models.BusinessPaymentCredential, BusinessPaymentCredentialViewModel>().ReverseMap();
 
             //Campaign
-            CreateMap<PreorderPlatform.Entity.Entities.Campaign, CampaignCreateRequest>().ReverseMap();
-            CreateMap<PreorderPlatform.Entity.Entities.Campaign, CampaignUpdateRequest>().ReverseMap();
-            CreateMap<PreorderPlatform.Entity.Entities.Campaign, CampaignResponse>().ReverseMap();
-            CreateMap<PreorderPlatform.Entity.Entities.Campaign, CampaignDetailResponse>().ReverseMap();            
+            CreateMap<PreorderPlatform.Entity.Models.Campaign, CampaignCreateRequest>().ReverseMap();
+            CreateMap<PreorderPlatform.Entity.Models.Campaign, CampaignUpdateRequest>().ReverseMap();
+            CreateMap<PreorderPlatform.Entity.Models.Campaign, CampaignResponse>().ReverseMap();
+            CreateMap<PreorderPlatform.Entity.Models.Campaign, CampaignDetailResponse>().ReverseMap();            
 
 
             //CampaignDetail
-            CreateMap<PreorderPlatform.Entity.Entities.CampaignDetail, CampaignPriceCreateRequest>().ReverseMap();
-            CreateMap<PreorderPlatform.Entity.Entities.CampaignDetail, CampaignPriceUpdateRequest>().ReverseMap();
-            CreateMap<PreorderPlatform.Entity.Entities.CampaignDetail, CampaignPriceResponse>().ReverseMap();
+            CreateMap<PreorderPlatform.Entity.Models.CampaignDetail, CampaignPriceCreateRequest>().ReverseMap();
+            CreateMap<PreorderPlatform.Entity.Models.CampaignDetail, CampaignPriceUpdateRequest>().ReverseMap();
+            CreateMap<PreorderPlatform.Entity.Models.CampaignDetail, CampaignPriceResponse>().ReverseMap();
 
             //Order
-            CreateMap<PreorderPlatform.Entity.Entities.Order, OrderCreateViewModel>().ReverseMap();
-            CreateMap<PreorderPlatform.Entity.Entities.Order, OrderUpdateViewModel>().ReverseMap();
-            CreateMap<PreorderPlatform.Entity.Entities.Order, OrderViewModel>().ReverseMap();
+            CreateMap<PreorderPlatform.Entity.Models.Order, OrderCreateViewModel>().ReverseMap();
+            CreateMap<PreorderPlatform.Entity.Models.Order, OrderUpdateViewModel>().ReverseMap();
+            CreateMap<PreorderPlatform.Entity.Models.Order, OrderViewModel>().ReverseMap();
 
             //OrderItem
-            CreateMap<PreorderPlatform.Entity.Entities.OrderItem, OrderItemCreateViewModel>().ReverseMap();
-            CreateMap<PreorderPlatform.Entity.Entities.OrderItem, OrderItemUpdateViewModel>().ReverseMap();
-            CreateMap<PreorderPlatform.Entity.Entities.OrderItem, OrderItemViewModel>().ReverseMap();
+            CreateMap<PreorderPlatform.Entity.Models.OrderItem, OrderItemCreateViewModel>().ReverseMap();
+            CreateMap<PreorderPlatform.Entity.Models.OrderItem, OrderItemUpdateViewModel>().ReverseMap();
+            CreateMap<PreorderPlatform.Entity.Models.OrderItem, OrderItemViewModel>().ReverseMap();
 
             //Payment
-            CreateMap<PreorderPlatform.Entity.Entities.Payment, PaymentCreateViewModel>().ReverseMap();
-            CreateMap<PreorderPlatform.Entity.Entities.Payment, PaymentUpdateViewModel>().ReverseMap();
-            CreateMap<PreorderPlatform.Entity.Entities.Payment, PaymentViewModel>().ReverseMap();
+            CreateMap<PreorderPlatform.Entity.Models.Payment, PaymentCreateViewModel>().ReverseMap();
+            CreateMap<PreorderPlatform.Entity.Models.Payment, PaymentUpdateViewModel>().ReverseMap();
+            CreateMap<PreorderPlatform.Entity.Models.Payment, PaymentViewModel>().ReverseMap();
 
             // Add other mappings here as needed
         }

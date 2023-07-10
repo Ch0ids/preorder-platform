@@ -1,4 +1,4 @@
-﻿using PreorderPlatform.Entity.Entities;
+﻿using PreorderPlatform.Entity.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

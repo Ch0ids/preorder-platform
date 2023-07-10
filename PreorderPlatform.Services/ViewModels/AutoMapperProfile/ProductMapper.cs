@@ -15,9 +15,9 @@ namespace PreorderPlatform.Service.ViewModels.AutoMapperProfile
     {
         public static void ConfigProductMapper(this IMapperConfigurationExpression configuration)
         {
-            configuration.CreateMap<PreorderPlatform.Entity.Entities.Product, ProductCreateRequest>().ReverseMap();
-            configuration.CreateMap<PreorderPlatform.Entity.Entities.Product, ProductUpdateRequest>().ReverseMap();
-            configuration.CreateMap<PreorderPlatform.Entity.Entities.Product, ProductResponse>()
+            configuration.CreateMap<PreorderPlatform.Entity.Models.Product, ProductCreateRequest>().ReverseMap();
+            configuration.CreateMap<PreorderPlatform.Entity.Models.Product, ProductUpdateRequest>().ReverseMap();
+            configuration.CreateMap<PreorderPlatform.Entity.Models.Product, ProductResponse>()
                                                 .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Category.Name))
                                                 .ReverseMap();
         }

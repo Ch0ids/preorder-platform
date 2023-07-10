@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using PreorderPlatform.Entity.Entities;
+using PreorderPlatform.Entity.Models;
 using PreorderPlatform.Entity.Repositories.BusinessPaymentCredentialRepositories;
 using PreorderPlatform.Service.ViewModels.BusinessPaymentCredential;
 using PreorderPlatform.Service.Exceptions;

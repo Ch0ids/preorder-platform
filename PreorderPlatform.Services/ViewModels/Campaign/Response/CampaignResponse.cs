@@ -22,5 +22,7 @@ namespace PreorderPlatform.Service.ViewModels.Campaign.Response
         public bool? Status { get; set; }
         public int? OwnerId { get; set; }
         public int? BusinessId { get; set; }
+        
+        public int? ProductId { get; set; }
     }
 }

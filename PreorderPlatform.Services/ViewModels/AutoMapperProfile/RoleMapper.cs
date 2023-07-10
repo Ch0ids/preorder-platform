@@ -14,8 +14,8 @@ namespace PreorderPlatform.Service.ViewModels.AutoMapperProfile
     {
         public static void ConfigRoleMapper(this IMapperConfigurationExpression configuration)
         {
-            configuration.CreateMap<PreorderPlatform.Entity.Entities.Role, RoleCreateViewModel>().ReverseMap();
-            configuration.CreateMap<PreorderPlatform.Entity.Entities.Role, RoleDetailViewModel>().ReverseMap();
+            configuration.CreateMap<PreorderPlatform.Entity.Models.Role, RoleCreateViewModel>().ReverseMap();
+            configuration.CreateMap<PreorderPlatform.Entity.Models.Role, RoleDetailViewModel>().ReverseMap();
         }
     }
 }

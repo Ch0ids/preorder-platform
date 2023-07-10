@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace PreorderPlatform.Entity.Entities
+namespace PreorderPlatform.Entity.Models
 {
     public partial class Product
     {
         public Product()
         {
-            CampaignDetails = new HashSet<CampaignDetail>();
+            Campaigns = new HashSet<Campaign>();
         }
 
         public int Id { get; set; }
@@ -21,6 +21,6 @@ namespace PreorderPlatform.Entity.Entities
 
         public virtual Business? Business { get; set; }
         public virtual Category? Category { get; set; }
-        public virtual ICollection<CampaignDetail> CampaignDetails { get; set; }
+        public virtual ICollection<Campaign> Campaigns { get; set; }
     }
 }

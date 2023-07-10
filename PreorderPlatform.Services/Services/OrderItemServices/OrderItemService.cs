@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using PreorderPlatform.Entity.Entities;
+using PreorderPlatform.Entity.Models;
 using PreorderPlatform.Entity.Repositories.OrderItemRepositories;
 using PreorderPlatform.Service.ViewModels.OrderItem;
 using PreorderPlatform.Service.Exceptions;

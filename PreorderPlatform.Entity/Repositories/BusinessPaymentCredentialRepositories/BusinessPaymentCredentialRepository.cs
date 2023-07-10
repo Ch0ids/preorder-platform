@@ -1,4 +1,4 @@
-﻿using PreorderPlatform.Entity.Entities;
+﻿using PreorderPlatform.Entity.Models;
 
 namespace PreorderPlatform.Entity.Repositories.BusinessPaymentCredentialRepositories
 {

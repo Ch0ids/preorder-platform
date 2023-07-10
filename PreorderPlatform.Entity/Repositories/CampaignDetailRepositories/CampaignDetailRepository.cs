@@ -1,4 +1,4 @@
-﻿using PreorderPlatform.Entity.Entities;
+﻿using PreorderPlatform.Entity.Models;
 
 namespace PreorderPlatform.Entity.Repositories.CampaignDetailRepositories
 {
@@ -10,9 +10,9 @@ namespace PreorderPlatform.Entity.Repositories.CampaignDetailRepositories
         }
 
         // Add any additional methods specific to CampaignDetailRepository here...
-        public async Task<IEnumerable<CampaignDetail>> GetAllCampainDetailsWithProductAsync()
+        public async Task<IEnumerable<CampaignDetail>> GetAllCampainDetailsAsync()
         {
-            return await GetAllWithIncludeAsync(u => true, u => u.Product);
+            return await GetAllAsync();
         }
     }
 }

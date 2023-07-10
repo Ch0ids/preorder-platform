@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using PreorderPlatform.Entity.Entities;
+using PreorderPlatform.Entity.Models;
 using PreorderPlatform.Entity.Repositories.CampaignDetailRepositories;
 using PreorderPlatform.Service.Exceptions;
 using System;
@@ -41,7 +41,7 @@ namespace PreorderPlatform.Service.Services.CampaignDetailServices
         {
             try
             {
-                var campaignDetails = await _campaignDetailRepository.GetAllCampainDetailsWithProductAsync();
+                var campaignDetails = await _campaignDetailRepository.GetAllCampainDetailsAsync();
                 return _mapper.Map<List<CampaignPriceResponse>>(campaignDetails);
             }
             catch (Exception ex)

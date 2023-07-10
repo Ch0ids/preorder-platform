@@ -8,7 +8,7 @@ using PreorderPlatform.Service.Services.RoleServices;
 using PreorderPlatform.Service.ViewModels.ApiResponse;
 using PreorderPlatform.Service.Exceptions;
 using PreorderPlatform.Service.ViewModels.Role;
-using PreorderPlatform.Entity.Entities;
+using PreorderPlatform.Entity.Models;
 
 namespace PreorderPlatform.API.Controllers
 {

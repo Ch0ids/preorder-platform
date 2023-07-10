@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace PreorderPlatform.Entity.Entities
+namespace PreorderPlatform.Entity.Models
 {
     public partial class Campaign
     {
@@ -13,6 +13,7 @@ namespace PreorderPlatform.Entity.Entities
         public int Id { get; set; }
         public string? Name { get; set; }
         public string? Description { get; set; }
+        public int? ProductId { get; set; }
         public DateTime? StartAt { get; set; }
         public DateTime? EndAt { get; set; }
         public int? DepositPercent { get; set; }
@@ -25,6 +26,7 @@ namespace PreorderPlatform.Entity.Entities
 
         public virtual Business? Business { get; set; }
         public virtual User? Owner { get; set; }
+        public virtual Product? Product { get; set; }
         public virtual ICollection<CampaignDetail> CampaignDetails { get; set; }
     }
 }

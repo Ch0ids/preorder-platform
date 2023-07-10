@@ -1,4 +1,4 @@
-﻿using PreorderPlatform.Entity.Entities;
+﻿using PreorderPlatform.Entity.Models;
 using PreorderPlatform.Service.ViewModels.User.Request;
 using System;
 using System.Collections.Generic;
